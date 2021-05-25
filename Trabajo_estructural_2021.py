@@ -9,6 +9,7 @@ Created on Fri Apr  9 16:54:12 2021
 # Librerias
 
 
+from sympy.polys.factortools import dmp_factor_list
 from Modulos import *
 import sympy as sy
 import numpy as np
@@ -173,14 +174,82 @@ des_notacion = (sy.Matrix(np.transpose(np.asmatrix(l))))
 
 ####################################################################
 
+'''
+Desplazamientos nodales en coordenadas globales
+'''
 
-# %% ensayos
+U1 = 0
+V1 = 0
+Theta1 = 0
+
+U2 = Desplaza[0, 0]
+V2 = Desplaza[1, 0]
+Theta2 = Desplaza[2, 0]
+
+U3 = Desplaza[3, 0]
+V3 = Desplaza[4, 0]
+Theta3 = Desplaza[5, 0]
 
 
-Vect = sy.zeros(7, 1)
+U4 = 0
+V4 = 0
+Theta4 = Desplaza[0, 0]
+
+U5 = 0
+V5 = 0
+Theta5 = 0
+
+# %% Creación de matrices de desplazamientos y cálculo de los desplazamientos nodales en coordenadas locales
 
 
-for i in range(3):
-    Vect[i, 0] = VA_Emp_Glo[i+3, 0] + VC_Emp_Glo[i, 0]
-    Vect[i+3, 0] = VB_Emp_Glo[i+3, 0] + VC_Emp_Glo[i+3, 0] + VD_Emp_Glo[i, 0]
-Vect[6, 0] = VC_Emp_Glo[2, 0]
+def Vect_des_GLO_and_LOC(ui, vi, thetai, uj, vj, thetaj, Mtrans_Elem):
+    DesNod_GLO_E = sy.zeros(6, 1)
+
+    DesNod_GLO_E[0, 0] = ui
+    DesNod_GLO_E[1, 0] = vi
+    DesNod_GLO_E[2, 0] = thetai
+    DesNod_GLO_E[3, 0] = uj
+    DesNod_GLO_E[4, 0] = vj
+    DesNod_GLO_E[5, 0] = thetaj
+
+    DesNod_LOC_E = Mtrans_Elem@DesNod_GLO_E
+
+    return DesNod_GLO_E, DesNod_LOC_E
+
+
+DesNod_GLO_A, DesNod_LOC_A = Vect_des_GLO_and_LOC(
+    U1, V1, Theta1, U2, V2, Theta2, MAtrans)
+
+DesNod_GLO_B, DesNod_LOC_B = Vect_des_GLO_and_LOC(
+    U2, V2, Theta2, U3, V3, Theta3, MBtrans)
+
+DesNod_GLO_C, DesNod_LOC_C = Vect_des_GLO_and_LOC(
+    U4, V4, Theta4, U3, V3, Theta3, MCtrans)
+
+DesNod_GLO_D, DesNod_LOC_D = Vect_des_GLO_and_LOC(
+    U3, V3, Theta3, U5, V5, Theta5, MDtrans)
+
+
+def Des_locales(DesNod_LOC_Elem):
+
+    # i,j Inicio y final del elemto respectivamente
+
+    ui_E = DesNod_LOC_Elem[0, 0]
+    vi_E = DesNod_LOC_Elem[1, 0]
+    thetai_E = DesNod_LOC_Elem[2, 0]
+    uj_E = DesNod_LOC_Elem[3, 0]
+    vj_E = DesNod_LOC_Elem[4, 0]
+    thetaj_E = DesNod_LOC_Elem[5, 0]
+
+    return ui_E, vi_E, thetai_E, uj_E, vj_E, thetaj_E
+
+
+u1_A, v1_A, theta1_A, u2_A, v2_A, theta2_A = Des_locales(DesNod_LOC_A)
+
+u2_B, v2_B, theta2_B, u3_B, v3_B, theta3_B = Des_locales(DesNod_LOC_B)
+
+u4_C, v4_C, theta4_C, u3_C, v3_C, theta3_C = Des_locales(DesNod_LOC_C)
+
+u3_D, v3_D, theta3_D, u5_D, v5_D, theta5_D = Des_locales(DesNod_LOC_D)
+
+# %%
