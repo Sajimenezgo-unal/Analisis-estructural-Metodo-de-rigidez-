@@ -1,3 +1,5 @@
+# %%
+
 # -*- coding: utf-8 -*-
 """
 Created on Fri Apr  9 16:54:12 2021
@@ -8,8 +10,6 @@ Created on Fri Apr  9 16:54:12 2021
 
 # Librerias
 
-
-from sympy.polys.factortools import dmp_factor_list
 from Modulos import *
 import sympy as sy
 import numpy as np
@@ -252,4 +252,32 @@ u4_C, v4_C, theta4_C, u3_C, v3_C, theta3_C = Des_locales(DesNod_LOC_C)
 
 u3_D, v3_D, theta3_D, u5_D, v5_D, theta5_D = Des_locales(DesNod_LOC_D)
 
-# %%
+# %% Cálculo de las reacciones
+
+''' 
+Reacciones en los nodos 1, 4, 5
+'''
+
+FX1 = float(
+    np.array(KA[0, :]@DesNod_GLO_A).astype(np.float64)) + float(VA_Emp_Glo[0, 0])
+FY1 = float(
+    np.array(KA[1, :]@DesNod_GLO_A).astype(np.float64)) + float(VA_Emp_Glo[1, 0])
+M1 = float(np.array(KA[2, :]@DesNod_GLO_A).astype(np.float64)
+           ) + float(VA_Emp_Glo[2, 0])
+
+FX4 = float(
+    np.array(KC[0, :]@DesNod_GLO_C).astype(np.float64)) + float(VC_Emp_Glo[0, 0])
+FY4 = float(
+    np.array(KC[1, :]@DesNod_GLO_C).astype(np.float64)) + float(VC_Emp_Glo[1, 0])
+
+FX5 = float(
+    np.array(KD[3, :]@DesNod_GLO_D).astype(np.float64)) + float(VD_Emp_Glo[3, 0])
+FY5 = float(
+    np.array(KD[4, :]@DesNod_GLO_D).astype(np.float64)) + float(VD_Emp_Glo[4, 0])
+M5 = float(np.array(KD[5, :]@DesNod_GLO_D).astype(np.float64)
+           ) + float(VD_Emp_Glo[5, 0])
+
+dict_reacciones = {"FX1": FX1, "FY1": FY1, "M1": M1,
+                   "FX4": FX4, "FY4": FY4, "FX5": FX5, "FY5": FY5, "M5": M5}
+
+Data_reacciones = pd.DataFrame([dict_reacciones]).T
