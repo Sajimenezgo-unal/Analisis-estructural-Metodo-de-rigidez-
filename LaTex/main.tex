@@ -1,0 +1,1225 @@
+\documentclass[a4paper]{article} 
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc} 
+%
+\usepackage[spanish]{babel}	
+\usepackage[fixlanguage]{babelbib}
+    \bibliographystyle{babunsrt} %Asigna el lenguaje a español
+%
+\usepackage{listingsutf8}
+\decimalpoint							%Usa como separador decimal el punto en lugar de la coma
+
+
+\usepackage{amsmath}						%Librería para agregar símbolos matemáticos
+\usepackage{amssymb}						%Librería para agregar símbolos matemáticos
+\usepackage{graphicx}					%Librería para agregar figuras
+\usepackage{subfigure}										%Crea subfiguras
+
+\usepackage{color}						%Paquete empleado para manipular los colores
+
+\usepackage{fancyhdr}											%Encabezados y pies de pagina
+\usepackage{flafter}
+\usepackage{txfonts}
+\usepackage{MnSymbol}
+\usepackage{float}												%Obliga a colocar las figuras donde queremos
+\usepackage{multicol}	
+\usepackage{lscape}
+\usepackage{listings}                     %Paquete para agregar código
+\usepackage{pdfpages}
+\usepackage{hyperref}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% AGREGADOS 
+\usepackage{mathtools} 
+% \usepackage{lmodern}
+\usepackage{multirow} % Necesario para tablas.
+\usepackage{multicol} % Necesario para tablas.
+\usepackage{enumerate}
+\usepackage{rotating}
+\usepackage{tikz}
+\usepackage{subfig} % Subfiguras.
+\newcommand{\grad}{$^{\circ}$}
+% \usepackage{parskip}
+\usepackage{longtable}
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+% \usepackage{datetime}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\input{head}
+\begin{document}
+
+%-------------------------------
+%	TITLE SECTION
+%-------------------------------
+
+\fancyhead[C]{}
+	\begin{minipage}{5cm}
+		\includegraphics[width=7cm]{Logo_un.pdf} 
+	\end{minipage}
+\hrule \medskip % Upper rule
+\begin{minipage}{0.295\textwidth} 
+\raggedright
+\footnotesize
+Santiago Jiménez Gómez  \hfill\\   
+CC. 1037659981\hfill\\
+sajimenezgo@unal.edu.co
+\end{minipage}
+\begin{minipage}{0.4\textwidth} 
+\centering 
+\large 
+TRABAJO DEL CURSO  \\ 
+\normalsize 
+Mecánica Estructural, 2020-2\\ 
+\end{minipage}
+\begin{minipage}{0.295\textwidth} 
+\raggedleft
+2020-11-6\\
+\end{minipage}
+\medskip\hrule 
+\bigskip
+
+%-------------------------------
+%	CONTENTS
+%-------------------------------
+
+\section*{ENUNCIADO}
+La estructura presentada en la figura está formada por cinco elementos y tiene una articulación en el nudo 4. Los elementos A y E son tipo pila, mientras que los elementos B, C, y D son tipo pórtico plano. El material de los cinco elementos es concreto con un módulo de elasticidad $E = 1,9 *10^7 kN/m^2$, sus pilas son circulares y macizas de radio 45cm, mientras que los elementos tipo pórtico plano son de sección transversal rectangular de base 35cm y altura 40cm. 
+\\
+\\
+Las cargas externas están definidas por los valores de $Q_1 = 42 kN/m$ y $Q_2 = 35 kN/m$, mientras que la geometría de de la estructura se define por $a = 3m$, $b = 5m$, $c = 3m$, $d = 3m$ y $e = 3m$. Además que lo anterior. el ingeniero geotecnista ha indicado que el suelo blando en el cual se encuentran las pilas tiene una rigidez lateral por unidad de longitud $k_{lateral} = 5100 kN/m^2$ 
+
+\begin{figure}[htp]
+    \centering
+    \includegraphics[width=13cm]{Trabajo_diagrama_Diagrama Trbajo.png}
+    \caption{Diagrama de la Estructura}
+    \label{fig:estructura}
+\end{figure}
+
+\newpage
+
+\section{Introducción}
+
+
+\section{Marco Teórico}
+
+
+\subsection{Elemento tipo pórtico plano}
+
+El elemento tipo pórtico plano es la superposición de un elemento tipo cercha y uno tipo viga. en dirección del eje $x'_E$ se comporta como una barra, mientras que en dirección $y'_E$ se comporta como una viga, por lo tanto el elemento se encuentra sometido a cargas de flexión, cortantes y fuerzas axial.
+\\
+\\
+\underline{Ecuaciones diferenciales gobernantes}
+\\
+\\
+las Ecuaciones diferenciales que gobiernan el comportamiento del elemento tipo pórtico plano son:\\
+
+\begin{subequation}
+\begin{align}
+A_E E_E \frac{d^2u_E}{{dx'_E}^2}(x'_E) & = -p_E(x'_E)\\
+E_E I_E \frac{d^4v_E}{{dx'_E}^4}(x'_E) & = q_E(x'_E)
+\end{align}
+\end{subequation}
+\\ 
+\underline{Funciones de forma}
+\\ \\
+Las funciones de forma para el comportamiento axial (eje local $x'_E$) son ${{\psi}_1}^E(x'_E)$ y ${{\psi}_4}^E(x'_E)$, mientras que las funciones de forma para el comportamiento en dirección $y'_E$ son ${{\psi}_2}^E(x'_E)$, ${{\psi}_3}^E(x'_E)$, ${{\psi}_5}^E(x'_E)$, ${{\psi}_6}^E(x'_E)$.
+\\
+\begin{subequation} \label{Funciones de forma}
+\begin{align}
+{\psi}_1 &=1 - \left(\frac{x'_{E}}{L_{E}}\right)\\
+{\psi}_2 &= 1 - 3\left(\frac{x'_E}{L_E}\right)^2 + 2\left(\frac{x'_E}{L_E}\right)^3\\
+{\psi}_3 &= L_{E} \left[\left(\frac{x'_{E}}{L_{E}}\right) - 2\left(\frac{ x'_{E}}{L_{E}}\right)^{2} + \left(\frac{x'_{E}}{L_{E}}\right)^{3}\right]\\
+{\psi}_4 &=\frac{x'_{E}}{L_{E}}\\
+{\psi}_5 &=3 {\left(\frac{ x'_{E}}{L_{E}}\right)}^{2} -2 \left( \frac{ x'_{E}}{L_{E}}\right)^{3}\\
+{\psi}_6 &=L_{E} \left[- \left(\frac{x'_{E}}{L_{E}}\right)^{2} + \left(\frac{x'_{E}}{L_{E}}\right)^{3}\right]
+\end{align}
+\end{subequation}
+
+\underline{Función de Green}
+
+\renewcommand{\arraystretch}{2.8}{
+\begin{equation}
+    G_{xx}(x'_E,{\xi}'_E) =
+    \begin{cases}
+    {G_{xx}^I(x'_E,{\xi}'_E) = \frac{L_E}{A_E E_E}{{\psi}_4}^E(x'_E){{\psi}_1}^E(\xi'_E) & 0 < x'_E {\leq} {\xi}'_E \\ \\
+    {G_{xx}^{II}(x'_E,{\xi}'_E) = \frac{L_E}{A_E E_E}{{\psi}_1}^E(x'_E){{\psi}_4}^E(\xi'_E) & {\xi}'_E  {\leq} x'_E <  L_E
+    \end{cases}
+}
+\end{equation}
+\\
+
+
+\begin{equation}
+\renewcommand{\arraystretch}{2.8}{
+    G_{yy}(x'_E,{\xi}'_E) =
+    \begin{cases}
+    {G_{yy}^I(x'_E,{\xi}'_E) = \frac{L^3_E}{6E_E I_E} \left[-\left(\frac{x'_E}{L_E}\right)^3{{\psi}_2}^E(\xi'_E) + 3\left(\frac{x'_E}{L_E}\right)^2 \frac{{{\psi}_3}^E(\xi'_E)}{L_E}\right]  & 0 < x'_E {\leq} {\xi}'_E \\ \\
+    {G_{yy}^{II}(x'_E,{\xi}'_E) = \frac{L^3_E}{6E_E I_E} \left[-\left(1-\frac{x'_E}{L_E}\right)^3{{\psi}_5}^E(\xi'_E) + 3\left(1-\frac{x'_E}{L_E}\right)^2 \frac{{{\psi}_3}^E(\xi'_E)}{L_E}\right]  & {\xi}'_E < x'_E {\leq} L_E 
+    \end{cases}
+}
+\end{equation}
+\\ \\
+\underline{Descomposiciones de los campos de desplazamiento}\\ \\
+Este tipo de elemento tiene dos componentes de desplazamientos (una en dirección del eje local $x'_E$ y la otra en dirección del eje local $y'_E$), las cuales se descomponen de la siguiente manera respectivamente:
+
+\\
+\begin{subequation}
+\begin{align}
+    u_E(x'_E) & = {u_E}^h(x'_E) + {u_E}^f(x'_E)\\
+    v_E(x'_E) & = {v_E}^h(x'_E) + {v_E}^f(x'_E)
+\end{align}
+\end{subequation}
+\\
+\underline{Campo de desplazamiento homogéneo}\\
+\begin{subequation}
+\begin{align}
+    {u_E}^h(x'_E) & = {{\psi}_1}^E(x'_E){u'_i}^E + {{\psi}_4}^E(x'_E){u'_j}^E \\
+    {v_E}^h(x'_E) & = {{\psi}_2}^E(x'_E){v'_i}^E + {{\psi}_3}^E(x'_E){{\theta}'_i}^E + {{\psi}_5}^E(x'_E){v'_j}^E + {{\psi}_6}^E(x'_E){{\theta}'_j}^E
+\end{align}
+\end{subequation}
+\\
+\underline{Campo empotrado}
+\\
+Las componentes de campo empotrado en dirección $x'_E$ y $y'_E$ se calcula a partir de las funciones de green. \\
+
+\begin{subequation}
+\begin{align}
+    {u_E}^f(x'_E) & = \int_{0}^{x'_E} p_E({\xi}'_E){G_{xx}}^{II}(x'_E,{\xi}'_E) d{\xi}'_E +
+    \int_{x'_E}^{L'_E} p_E({\xi}'_E){G_{xx}}^{I}(x'_E,{\xi}'_E) d{\xi}'_E \\
+    \\
+    {v_E}^f(x'_E) & = \int_{0}^{x'_E} q_E({\xi}'_E){G_{yy}}^{II}(x'_E,{\xi}'_E) d{\xi}'_E +
+    \int_{x'_E}^{L'_E} q_E({\xi}'_E){G_{yy}}^{I}(x'_E,{\xi}'_E) d{\xi}'_E
+\end{align}
+\end{subequation}
+\\
+\underline{Cálculo de fuerzas internas}\\
+\\
+Estas se hallan a partir de las ecuaciones diferenciales que gobiernan el comportamiento del elemento tipo pórtico plano. \\
+\begin{subequation}
+\begin{align}
+    P_E(x'_E) & = A_E E_E \frac{du_E}{dx'_E}(x'_E)\\
+    M_E(x'_E) & = E_E I_E \frac{d^2v_E}{dx'_E}^2(x'_E)\\
+    V_E(x'_E) & = -E_E I_E \frac{d^3v_E}{dx'_E}^3(x'_E)
+\end{align}
+\end{subequation}
+\underline{Sistema de ecuaciones en coordenadas locales}
+\\ \\
+{
+\renewcommand{\arraystretch}{1.7}
+$$
+\left[\begin{array}{c}
+     {FX'_i}^E  \\ {FY'_i}^E \\ {M'_i}^E \\
+     {FX'_j}^E \\ {FY'_j}^E \\ {M'_j}^E
+\end{array}\right] = 
+\left[\begin{matrix}\frac{A_{E} E_{E}}{L_{E}} & {\footnotesize 0} & {\footnotesize 0} & - \frac{A_{E} E_{E}}{L_{E}} & {\footnotesize 0} & {\footnotesize 0}\\{\footnotesize 0} & \frac{12 E_{E} I_{E}}{L_{E}^{3}} & \frac{6 E_{E} I_{E}}{L_{E}^{2}} & {\footnotesize 0} & - \frac{12 E_{E} I_{E}}{L_{E}^{3}} & \frac{6 E_{E} I_{E}}{L_{E}^{2}}\\{\footnotesize 0} & \frac{6 E_{E} I_{E}}{L_{E}^{2}} & \frac{4 E_{E} I_{E}}{L_{E}} & {\footnotesize 0} & - \frac{6 E_{E} I_{E}}{L_{E}^{2}} & \frac{2 E_{E} I_{E}}{L_{E}}\\- \frac{A_{E} E_{E}}{L_{E}} & {\footnotesize 0} & {\footnotesize 0} & \frac{A_{E} E_{E}}{L_{E}} & {\footnotesize 0} & {\footnotesize 0}\\{\footnotesize 0} & - \frac{12 E_{E} I_{E}}{L_{E}^{3}} & - \frac{6 E_{E} I_{E}}{L_{E}^{2}} & {\footnotesize 0} & \frac{12 E_{E} I_{E}}{L_{E}^{3}} & - \frac{6 E_{E} I_{E}}{L_{E}^{2}}\\{\footnotesize 0} & \frac{6 E_{E} I_{E}}{L_{E}^{2}} & \frac{2 E_{E} I_{E}}{L_{E}} & {\footnotesize 0} & - \frac{6 E_{E} I_{E}}{L_{E}^{2}} & \frac{4 E_{E} I_{E}}{L_{E}}\end{matrix}\right]
+\left\{ \begin{array}{c}
+{u'_i}^E \\ {v'_i}^E \\ {{\theta}'_i}^E \\
+{u'_j}^E  \\ {v'_j}^E \\ {{\theta}'_j}^E 
+\end{array} \right\} - 
+\left\{ \begin{array}{c}
+\int_{0}^{L_E} {{\psi}_1}^E(x'_E)p_E dx'_E \\ \int_{0}^{L_E} {{\psi}_2}^E(x'_E)q_E dx'_E \\ \int_{0}^{L_E} {{\psi}_3}^E(x'_E)q_E dx'_E \\
+\int_{0}^{L_E} {{\psi}_4}^E(x'_E)p_E dx'_E  \\ \int_{0}^{L_E} {{\psi}_5}^E(x'_E)q_E dx'_E \\ \int_{0}^{L_E} {{\psi}_6}^E(x'_E)q_E dx'_E 
+\end{array} \right\}
+$$
+}
+\\
+\underline{Matriz de transformación de coordenadas}
+{
+\renewcommand{\arraystretch}{1.5}
+$$
+[T^*_E]=
+\left[
+\begin{array}{cccccc}
+    {\cos{({\theta}_E - {\phi}_i })} & {\sin{({\theta}_E - {\phi}_i )}} & 0 & 0 & 0 &  0 \\
+    -{\sin{({\theta}_E - {\phi}_i })} & {\cos{({\theta}_E - {\phi}_i) }} & 0 & 0 & 0 &  0 \\
+     0 & 0 & 1 & 0 & 0 &  0 \\
+     0 & 0 & 0 & {\cos{({\theta}_E - {\phi}_j })} & {\sin{({\theta}_E - {\phi}_j })} &  0 \\
+     0 & 0 & 0 & -{\sin{({\theta}_E - {\phi}_j })} & {\cos{({\theta}_E - {\phi}_j })} &  0 \\
+     0 & 0 & 0 & 0 & 0 &  1  
+\end{array}
+\right]
+$$
+}
+
+\subsection{Elemento tipo pila}\\
+Este elemento se encuentra compuesto por dos tipos de elementos, un elemento tipo viga sobre fundación flexible y otro elemento tipo pila sin fricción en el fuste. \\
+
+\underline{Ecuaciones diferenciales gobernantes}\\
+\\
+Las ecuaciones que gobiernan el comportamiento del elemento son: \\
+
+\begin{subequation}
+\begin{align}
+A_E E_E \frac{d^2u_E}{{dx'_E}^2}(x'_E) & = -p_E(x'_E)\\
+E_E I_E \frac{d^4v_E}{{dx'_E}^4}(x'_E) + k_Ev_E(x'_E)& = q_E(x'_E)\\
+\end{align}
+\end{subequation}
+$$
+\text{Donde: $k_E$ es la constate de rigidez del suelo}
+$$ 
+
+\underline{funciones de forma}\\
+\\
+Las funciones de forma para el comportamiento axial (eje local $x'_E$) son ${{\psi}_1}^E$ y ${{\psi}_4}^E$, las cuales corresponden al elemento tipo pórtico plano mencionado anteriormente.\\
+\\
+Mientras que las funciones de forma para el comportamiento en dirección $y'_E$ son ${{\Psi}_2}^E$, ${{\Psi}_3}^E$, ${{\Psi}_5}^E$, ${{\Psi}_6}^E$, las cuales corresponden al elemento tipo viga sobre fundación flexible de sección transversal constante.
+
+\begin{subequation}
+\begin{center}
+\begin{align}
+
+{{\Psi}_2}^E(x'_E) &= \frac{-(s^2{\cdot}ch^2 + c^2{\cdot}sh^2)\sin({\lambda}_Ex'_E) + \sinh({\lambda}_Ex'_E) + (s{\cdot}c + sh{\cdot}ch)[\sin({\lambda}_Ex'_E)\cosh({\lambda}_Ex'_E) - \cos({\lambda}_Ex'_E)\sinh({\lambda}_Ex'_E)] + (sh^2 - s^2)\cos({\lambda}_Ex'_E)\cosh({\lambda}_Ex'_E)}{sh^2 - s^2}\\
+\\
+\vspace{4}
+{{\Psi}_3}^E(x'_E) &= \frac{1}{{\lambda}_E}\frac{(s{\cdot}c -sh{\cdot}ch)\sin({\lambda}_E{\cdot}x'_E)\sinh({\lambda}_E{\cdot}x'_E) + sh^2\sin({\lambda}_E{\cdot}x'_E)\cosh({\lambda}_E{\cdot}x'_E)-s^2\cos({\lambda}_E{\cdot}x'_E)\sinh({\lambda}_E{\cdot}x'_E)}{sh^2 - s^2}\\
+\\
+\vspace{4}
+{{\Psi}_5}^E(x'_E) &= \frac{s{\cdot}sh{\cdot}\sin({\lambda}_Ex'_E)\sinh({\lambda}_Ex'_E) - (s{\cdot}ch + c{\cdot}sh)\sin({\lambda}_Ex'_E)\cosh({\lambda}_Ex'_E) + (s{\cdot}ch + c{\cdot}sh)\cos({\lambda}_Ex'_E)\sinh({\lambda}_Ex'_E)}{sh^2 - s^2}\\
+\vspace{4}
+{{\Psi}_6}^E(x'_E) &= \frac{1}{{\lambda}_E}\frac{(c{\cdot}sh - s{\cdot}ch)\sin({\lambda}_Ex'_E)\sinh({\lambda}_Ex'_E) + s{\cdot}sh{\cdot}\sin({\lambda}_Ex'_E){\cdot}\cosh({\lambda}_Ex'_E) - s{\cdot}sh{\cdot}\cos({\lambda}_Ex'_E)\sinh({\lambda}_Ex'_E)}{sh^2 - s^2}
+
+\end{align}
+\end{center}
+\end{subequation}
+
+$
+{\text{Donde:}}\\
+$
+\begin{subequation*}
+s = \sin({\lambda}_Ex'_E)\\ 
+c= \cos({\lambda}_Ex'_E)\\
+sh = \sinh({\lambda}_Ex'_E)\\
+ch = \cosh({\lambda}_Ex'_E)\\
+{\lambda}_E = \sqrt[4]{\frac{k_E}{4E_E I_E}}
+\end{subequation*}
+\\ \\
+\underline{Función de Green}
+\\ \\
+La función de green para una viga sobre fundación flexible doblemente empotrada sometida a una fuerza puntual es:
+\\
+\begin{equation}
+\renewcommand{\arraystretch}{2.8}
+    G_{yy}(x'_E,{\xi}'_E) =
+    \begin{cases}
+    G_{yy}^I(x'_E,{\xi}'_E) & 0 < x'_E {\leq} {\xi}'_E \\
+    \\
+    G_{yy}^{II}(x'_E,{\xi}'_E) & {\xi}'_E  < x'_E {\leq} L_E 
+    \end{cases}
+}
+\end{equation}
+
+Donde:
+
+\begin{subequation}\label{Función de Green}
+\begin{align}
+
+G_{yy}^I(x'_E,{\xi}'_E) &= \frac{1}{E_E I_E} \left[ -\frac{\sin({\lambda}_Ex'_E)\cosh({\lambda}_Ex'_E) - \sinh({\lambda}_Ex'_E)\cos({\lambda}_Ex'_E)}{4{{\lambda}_E}^3} {\cdot} {{\Psi}_2}^E(x'_E)
++ \frac{\sin({\lambda}_Ex'_E)\sinh({\lambda}_Ex'_E)}{2{{\lambda}_E}^2} {\cdot} {{\Psi}_3}^E(x'_E) \right]\\
+\\
+G_{yy}^{II}(x'_E,{\xi}'_E) &= \frac{1}{E_E I_E} {\left[- \frac{\sin[{\lambda}_E(L_E - x'_E)]\cosh[{\lambda}_E(L_E - x'_E)] - \sinh[{\lambda}_E(L_E - x'_E)]\cos[{\lambda}_E(L_E - x'_E)]}{4{{\lambda}_E}^3} {\cdot} {\Psi}_5}^E(x'_E) - \frac{\sin[{\lambda}_E(L_E - x'_E)]\sinh[{\lambda}_E(L_E - x'_E)]}{2{{\lambda}_E}^2} {\cdot} {\Psi}_6}^E(x'_E)\right]}
+\end{align}
+\end{subequation}
+
+\underline{Descomposiciones de los campos de desplazamiento}\\ \\
+De igual manera que en el elemento tipo pórtico plano se tienen dos componentes de desplazamientos (una en dirección del eje local $x'_E$ y la otra en dirección del eje local $y'_E$), las cuales se descomponen de la siguiente manera respectivamente:
+
+\\
+\begin{subequation}
+\begin{align}
+    u_E(x'_E) & = {u_E}^h(x'_E) + {u_E}^f(x'_E)\\
+    v_E(x'_E) & = {v_E}^h(x'_E) + {v_E}^f(x'_E)
+\end{align}
+\end{subequation}
+\\
+\underline{Campo de desplazamiento homogéneo}\\
+\begin{subequation}
+\begin{align}
+    {u_E}^h(x'_E) & = {{\psi}_1}^E(x'_E){u'_i}^E + {{\psi}_4}^E(x'_E){u'_j}^E \\
+    {v_E}^h(x'_E) & = {{\Psi}_2}^E(x'_E){v'_i}^E + {{\Psi}_3}^E(x'_E){{\theta}'_i}^E + {{\Psi}_5}^E(x'_E){v'_j}^E + {{\Psi}_6}^E(x'_E){{\theta}'_j}^E
+\end{align}
+\end{subequation}
+\\
+\underline{Campo empotrado}
+\\ \\
+Las componentes de campo empotrado en dirección $x'_E$ y $y'_E$ se calcula a partir de las funciones de green. \\
+
+\begin{subequation}
+\begin{align}
+    {u_E}^f(x'_E) & = \int_{0}^{x'_E} p_E({\xi}'_E){G_{xx}}^{II}(x'_E,{\xi}'_E) d{\xi}'_E +
+    \int_{x'_E}^{L'_E} p_E({\xi}'_E){G_{xx}}^{I}(x'_E,{\xi}'_E) d{\xi}'_E \\
+    \\
+    {v_E}^f(x'_E) & = \int_{0}^{x'_E} q_E({\xi}'_E){G_{yy}}^{II}(x'_E,{\xi}'_E) d{\xi}'_E +
+    \int_{x'_E}^{L'_E} q_E({\xi}'_E){G_{yy}}^{I}(x'_E,{\xi}'_E) d{\xi}'_E
+\end{align}
+\end{subequation}
+
+Donde $G_{xx}(x'_E,{\xi}'_E)$ es la función de green de una barra doblemente empotrada y $G_{yy}(x'_E,{\xi}'_E)$ es la función de Green de una viga sobre fundación flexible doblemente empotrada.\\
+\\
+\\
+\underline{Cálculo de fuerzas internas}\\
+\\
+Estas se hallan a partir de las ecuaciones diferenciales que gobiernan el comportamiento del elemento tipo pórtico plano. \\
+\begin{subequation}
+\begin{align}
+    P_E(x'_E) & = A_E E_E \frac{du_E}{dx'_E}(x'_E)\\
+    M_E(x'_E) & = E_E I_E \frac{d^2v_E}{dx'_E}^2(x'_E)\\
+    V_E(x'_E) & = -E_E I_E \frac{d^3v_E}{dx'_E}^3(x'_E)
+\end{align}
+\end{subequation}
+\\
+\underline{Fuerza que ejerce sobre la pila}\\
+\\
+La fuerza que el suelo ejerce sobre la pila solo ocurre en dirección del eje local $y'_E$ y se calcula como:\\
+\begin{equation}
+    f_s(x'_E) = -k_E v_E(x'_E)
+\end{equation}
+\\
+\underline{Sistema de ecuaciones en coordenadas locales}
+\\ \\
+{
+\renewcommand{\arraystretch}{1.7}
+$$
+\left[\begin{array}{c}
+     {FX'_i}^E  \\ {FY'_i}^E \\ {M'_i}^E \\
+     {FX'_j}^E \\ {FY'_j}^E \\ {M'_j}^E
+\end{array}\right] = 
+\left[\begin{array}{cccccc}
+\frac{A_EE_E}{L_E} & 0 & 0  & -\frac{A_EE_E}{L_E} & 0 & 0\\
+0 & k_{22} & k_{23} & 0 & k_{25} & k_{26}\\
+0 & k_{32} & k_{33} & 0 & k_{35} & k_{36}\\
+-\frac{A_EE_E}{L_E} & 0 & 0  & \frac{A_EE_E}{L_E} & 0 & 0\\
+0 & k_{52} & k_{53} & 0 & k_{55} & k_{56}\\
+0 & k_{32} & k_{63} & 0 & k_{65} & k_{66}
+\end{array}\right]
+\left\{ \begin{array}{c}
+{u'_i}^E \\ {v'_i}^E \\ {{\theta}'_i}^E \\
+{u'_j}^E  \\ {v'_j}^E \\ {{\theta}'_j}^E 
+\end{array} \right\} - 
+\left\{ \begin{array}{c}
+\int_{0}^{L_E} {{\psi}_1}^E(x'_E)p_E dx'_E \\ \int_{0}^{L_E} {{\Psi}_2}^E(x'_E)q_E dx'_E \\ \int_{0}^{L_E} {{\Psi}_3}^E(x'_E)q_E dx'_E \\
+\int_{0}^{L_E} {{\psi}_4}^E(x'_E)p_E dx'_E  \\ \int_{0}^{L_E} {{\Psi}_5}^E(x'_E)q_E dx'_E \\ \int_{0}^{L_E} {{\Psi}_6}^E(x'_E)q_E dx'_E 
+\end{array} \right\}
+$$
+}
+\\
+Donde los términos $k_{ij}$ son aquellos de la viga sobre fundación flexible y se obtienen de la siguiente manera:
+\begin{subequation}
+\begin{align}
+    k_{22} = k_{55} = 4E_EI_E{{\lambda}E}^3{\cdot}\frac{s{\cdot}c + sh{\cdot}ch}{sh^2 - s^2}\\
+    k_{23} = k_{32} = -k_{56} = -k_{65} = 2E_EI_E{{\lambda}E}^2{\cdot}\frac{s^2 + sh^2}{sh^2 - s^2}\\
+    k_{25} = k_{52} = -4E_EI_E{{\lambda}E}^3{\cdot}\frac{s{\cdot}ch + c{\cdot}sh}{sh^2 - s^2}\\
+    k_{26} = k_{62} = -k_{35} = -k_{53} = 4E_EI_E{{\lambda}E}^2{\cdot}\frac{s{\cdot}sh}{sh^2 - s^2}\\
+    k_{33} = k_{66} = 2E_EI_E{{\lambda}E}^3{\cdot}\frac{sh{\cdot}ch - s{\cdot}c}{sh^2 - s^2}\\
+    k_{36} = k_{63} = 2E_EI_E{{\lambda}E}^3{\cdot}\frac{s{\cdot}ch - c{\cdot}ch}{sh^2 - s^2}
+\end{align}
+\end{subequation}
+\underline{Matriz de transformación de coordenadas}
+{
+\renewcommand{\arraystretch}{1.5}
+$$
+[T^*_E]=
+\left[
+\begin{array}{cccccc}
+    {\cos{({\theta}_E - {\phi}_i })} & {\sin{({\theta}_E - {\phi}_i )}} & 0 & 0 & 0 &  0 \\
+    -{\sin{({\theta}_E - {\phi}_i })} & {\cos{({\theta}_E - {\phi}_i) }} & 0 & 0 & 0 &  0 \\
+     0 & 0 & 1 & 0 & 0 &  0 \\
+     0 & 0 & 0 & {\cos{({\theta}_E - {\phi}_j })} & {\sin{({\theta}_E - {\phi}_j })} &  0 \\
+     0 & 0 & 0 & -{\sin{({\theta}_E - {\phi}_j })} & {\cos{({\theta}_E - {\phi}_j })} &  0 \\
+     0 & 0 & 0 & 0 & 0 &  1  
+\end{array}
+\right]
+$$
+}
+\\
+\medskip
+
+
+
+\subsection*{Nota:}
+El marco teorico fue realizado en base a las notas de clase del  profesor \href{https://www.researchgate.net/profile/Juan_Molina_Villegas}{Juan Camilo Molina villegas} -  \underline{\href{https://www.researchgate.net/publication/330567201_Introduccion_al_analisis_matricial_de_estructuras}{Introducción al análisis matricial de estructuras}} [1]
+\vspace{0.5cm}
+
+\section{Desarrollo}
+\subsection{Datos iniciales}
+\vspace{0.4cm}
+\begin{itemize}
+    \item a = 3m
+    \item b = 5m
+    \item c = 3m
+    \item d = 3m
+    \item e = 3m
+    \item $K_{lateral}$ = $5100$ $kN/m^2$
+    \item $Q_1$ = $42$ $kN/m^2$
+    \item $Q_2$ = $35$ $kN/m^2$
+    \item E = $2.2*10^7$ $kN/m^2$ 
+\end{itemize}
+\textbf{Longitud de los elementos}
+\vspace{0.3cm}
+\begin{itemize}
+    \item $L_A$ = d = 3 m
+    \item $L_B$ = $\sqrt{3^2+3^2}$ = $\sqrt{18}$ m 
+    \item $L_C$ = b = 5 m
+    \item $L_D$ = $\sqrt{3^2+3^2}$ = $\sqrt{18}$ m
+    \item $L_E$ = d = 3 m
+\end{itemize}
+\textbf{Sección tranversal de los elementos}
+
+\begin{itemize}
+    \item Elementos tipo pila (A,E)
+        \begin{itemize}
+        \item Pilas circulares de radio igual a 45 cm
+    \end{itemize}
+    \end{itemize}
+    \begin{itemize}
+    \item Elementos tipo pórtico plano (B,C,D)
+    \begin{itemize}
+        \item Pilas circulares de radio igual a 45 cm
+    
+        \item Elementos rectangulares de base 35 cm y altura 40 cm
+    
+    \end{itemize}
+\end{itemize}
+
+\subsection{transformación de las fuerzas externas en coordenadas locales}\\
+\underline{Elemento B}
+\begin{center}
+\begin{subequation}
+    R'_B(x'_B)=- 7 \sqrt{2} x'_B\\
+    \\
+    p_B(x'_B)=R'_B(x'_B)|cos(\theta_B)|sen(\theta_B)=-- \frac{7 \sqrt{2} x'_B}{2}\\
+    \\
+    q_B(x'_B)=R'_B(x'_B)|cos(\theta_B)|cos(\theta_B)=- \frac{7\sqrt{2}x'_B}{2}
+\end{subequation}
+\end{center}
+\vspace{0.5cm}
+\underline{Elemento D}
+\vspace{0.5cm}
+\begin{subequation}\\
+    Q'_D(x'_D)= 11.666 x'_C - 35\\
+    \\
+    \vspace{0.5cm}
+    p_D(x'_D)=Q'_D(x'_D)|sen(\theta_D)|cos(\theta_D)= 5.833 x'_C - \frac{35}{2}\\
+\vspace{0.5cm}
+    q_D(x'_D)=-Q'_D(x'_D)|sen(\theta_D)|sen(\theta_D)=5.833 x'_C - \frac{35}{2}\\
+    \end{subequation}
+    \vspace{0.5cm}
+\subsection{Discretización de los elementos}
+\\
+\begin{figure}[htp]
+  \centering
+  \begin{minipage}[b]{0.4\textwidth}
+    \includegraphics[width=\textwidth]{Elementos/Elemento_A.png}
+    \caption{Elemento A}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.4\textwidth}
+    \includegraphics[width=\textwidth]{Elementos/Elemento_B.png}
+    \caption{Elemento B}
+  \end{minipage}
+\end{figure}
+
+\begin{figure}[htp]
+  \centering
+  \begin{minipage}[b]{0.4\textwidth}
+    \includegraphics[width=\textwidth]{Elementos/Elemento_C.png}
+    \caption{Elemento C}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.4\textwidth}
+    \includegraphics[width=\textwidth]{Elementos/Elemento_D.png}
+    \caption{Elemento D}
+  \end{minipage}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+    \includegraphics[width=6.5cm]{Elementos/Elemento_E.png}
+    \caption{Elemento E}
+\end{figure}
+\vspace{1 cm}
+\subsection{Matrices de rigidez y transformación en coordenadas locales por elemento}\\
+
+Siguiendo la teoría anteriormente descrita, según el tipo de elemento se determina su correspondiente matriz de rigidez en coordenadas locales y se define el correspondiente sistema de ecuaciones en coordenadas locales.\\
+\\
+\underline{Elemento A}
+\\
+\\
+{
+\renewcommand{\arraystretch}{1.7}
+\begin{equation}
+    \begin{Bmatrix}
+        FX'_1^A\\
+        FY'_1^A\\
+        M'_1^A\\
+        FX'_2^A\\
+        FY'_2^A\\
+        M'_2^A
+    \end{Bmatrix} =
+\left[\begin{matrix}4029092.58 & 0.0 & 0.0 & -4029092.58 & 0.0 & 0.0\\0.0 & 277642.84 & 410347.54 & 0.0 & -270000.01 & 406527.14\\0.0 & 410347.54 & 817201.17 & 0.0 & -406527.14 & 406963.51\\-4029092.58 & 0.0 & 0.0 & 4029092.58 & 0.0 & 0.0\\0.0 & -270000.01 & -406527.14 & 0.0 & 277642.84 & -410347.54\\0.0 & 406527.14 & 406963.51 & 0.0 & -410347.54 & 817201.17\end{matrix}\right]
+    \begin{Bmatrix}
+        u'_1^A\\
+        v'_1^A\\
+        \theta'_1^A\\
+        u'_2^A\\
+        v'_2^A\\
+        \theta'_2^A
+    \end{Bmatrix} 
+\end{equation}
+\\
+}
+\underline{Elemento B}
+\\
+{
+\renewcommand{\arraystretch}{1.7}
+\begin{equation}
+    \begin{Bmatrix}
+        FX'_2^B\\
+        FY'_2^B\\
+        M'_2^B\\
+        FX'_3^B\\
+        FY'_3^B\\
+        M'_3^B
+    \end{Bmatrix} =
+\left[\begin{matrix}626968.01 & 0.0 & 0.0 & -626968.01 & 0.0 & 0.0\\0.0 & 5573.05 & 11822.22 & 0.0 & -5573.05 & 11822.22\\0.0 & 11822.22 & 33438.29 & 0.0 & -11822.22 & 16719.15\\-626968.01 & 0.0 & 0.0 & 626968.01 & 0.0 & 0.0\\0.0 & -5573.05 & -11822.22 & 0.0 & 5573.05 & -11822.22\\0.0 & 11822.22 & 16719.15 & 0.0 & -11822.22 & 33438.29\end{matrix}\right]
+    \begin{Bmatrix}
+        u'_2^B\\
+        v'_2^B\\
+        \theta'_2^B\\
+        u'_3^B\\
+        v'_3^B\\
+        \theta'_3^B\\
+    \end{Bmatrix} + 
+    \begin{bmatrix}14.85\\13.36\\12.6\\29.7\\31.18\\-18.9\end{bmatrix}
+    \\
+    \end{equation}
+}
+\underline{Elemento C}
+\\
+{
+\renewcommand{\arraystretch}{1.7}
+\begin{equation}
+    \begin{Bmatrix}
+        FX'_3^C\\
+        FY'_3^C\\
+        M'_3^C\\
+        FX'_4^C\\
+        FY'_4^C\\
+        M'_4^C
+    \end{Bmatrix} =
+\left[\begin{matrix}532000.0 & 0.0 & 0.0 & -532000.0 & 0.0 & 0.0\\0.0 & 3404.8 & 8512.0 & 0.0 & -3404.8 & 8512.0\\0.0 & 8512.0 & 28373.33 & 0.0 & -8512.0 & 14186.67\\-532000.0 & 0.0 & 0.0 & 532000.0 & 0.0 & 0.0\\0.0 & -3404.8 & -8512.0 & 0.0 & 3404.8 & -8512.0\\0.0 & 8512.0 & 14186.67 & 0.0 & -8512.0 & 28373.33\end{matrix}\right]
+    \begin{Bmatrix}
+        u'_3^C\\
+        v'_2^C\\
+        \theta'_2^C\\
+        u'_4^C\\
+        v'_4^C\\
+        \theta'_4^C\\
+    \end{Bmatrix} + 
+    \begin{bmatrix}0.0\\47.25\\25.16\\0.0\\5.25\\-7.66\end{bmatrix}
+    \\
+    \end{equation}
+}
+
+\underline{Elemento D}
+\\
+{
+\renewcommand{\arraystretch}{1.7}
+\begin{equation}
+    \begin{Bmatrix}
+        FX'_4^D\\
+        FY'_4^D\\
+        M'_4^D\\
+        FX'_5^D\\
+        FY'_5^D\\
+        M'_5^D
+    \end{Bmatrix} =
+\left[\begin{matrix}626968.01 & 0.0 & 0.0 & -626968.01 & 0.0 & 0.0\\0.0 & 5573.05 & 11822.22 & 0.0 & -5573.05 & 11822.22\\0.0 & 11822.22 & 33438.29 & 0.0 & -11822.22 & 16719.15\\-626968.01 & 0.0 & 0.0 & 626968.01 & 0.0 & 0.0\\0.0 & -5573.05 & -11822.22 & 0.0 & 5573.05 & -11822.22\\0.0 & 11822.22 & 16719.15 & 0.0 & -11822.22 & 33438.29\end{matrix}\right]
+    \begin{Bmatrix}
+        u'_4^D\\
+        v'_4^D\\
+        \theta'_4^D\\
+        u'_5^D\\
+        v'_5^D\\
+        \theta'_5^D\\
+    \end{Bmatrix} + 
+    \begin{bmatrix}19.62\\21.37\\11.4\\2.12\\0.37\\-3.98\end{bmatrix}
+    \\
+    \end{equation}
+}
+\underline{Elemento E}
+\\
+{
+\renewcommand{\arraystretch}{1.7}
+\begin{equation}
+    \begin{Bmatrix}
+        FX'_6^E\\
+        FY'_6^E\\
+        M'_6^E\\
+        FX'_5^E\\
+        FY'_5^E\\
+        M'_5^E
+    \end{Bmatrix} =
+\left[\begin{matrix}4029092.58 & 0.0 & 0.0 & -4029092.58 & 0.0 & 0.0\\0.0 & 277642.84 & 410347.54 & 0.0 & -270000.01 & 406527.14\\0.0 & 410347.54 & 817201.17 & 0.0 & -406527.14 & 406963.51\\-4029092.58 & 0.0 & 0.0 & 4029092.58 & 0.0 & 0.0\\0.0 & -270000.01 & -406527.14 & 0.0 & 277642.84 & -410347.54\\0.0 & 406527.14 & 406963.51 & 0.0 & -410347.54 & 817201.17\end{matrix}\right]
+    \begin{Bmatrix}
+        u'_6^E\\
+        v'_6^E\\
+        \theta'_6^E\\
+        u'_5^E\\
+        v'_5^E\\
+        \theta'_5^E\\
+    \end{Bmatrix}
+    \\
+    \end{equation}
+}
+\\
+
+\subsection{Sistema de ecuaciones de cada elemento en coordenadas globales}
+El sistema se transforma de coordenadas locales a globales por medio de $[T^*_E]$ realizando el siguiente producto de matrices:
+\begin{equation}
+    [T^*_E]^\intercal{\cdot}[K_E]{\cdot}[T^*_E]
+\end{equation}
+\\
+
+\underline{Elemento A}
+\\
+{
+\renewcommand{\arraystretch}{1.7}
+\begin{equation}
+[T^*_A]=
+    \left[\begin{matrix}0.0 & 1.0 & 0.0 & 0.0 & 0.0 & 0.0\\-1.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0\\0.0 & 0.0 & 1.0 & 0.0 & 0.0 & 0.0\\0.0 & 0.0 & 0.0 & 0.0 & 1.0 & 0.0\\0.0 & 0.0 & 0.0 & -1.0 & 0.0 & 0.0\\0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 1.0\end{matrix}\right]
+\end{equation}
+\begin{equation}
+\left\{ \begin{array}{c}
+{FX_1}^A \\ {FY_1}^A \\ {M_1}^A \\
+{FX_2}^A  \\ {FY_2}^A \\ {M_2}^A 
+\end{array} \right\} = 
+\left[\begin{matrix}277642.84 & 0.0 & -410347.54 & -270000.01 & 0.0 & -406527.14\\0.0 & 4029092.58 & 0.0 & 0.0 & -4029092.58 & 0.0\\-410347.54 & 0.0 & 817201.17 & 406527.14 & 0.0 & 406963.51\\-270000.01 & 0.0 & 406527.14 & 277642.84 & 0.0 & 410347.54\\0.0 & -4029092.58 & 0.0 & 0.0 & 4029092.58 & 0.0\\-406527.14 & 0.0 & 406963.51 & 410347.54 & 0.0 & 817201.17\end{matrix}\right]
+\left\{ \begin{array}{c}
+{u_1}^A \\ {v_1}^A \\ {{\theta}_1}^A \\
+{u_2}^A  \\ {v_2}^A \\ {{\theta}_2}^A 
+\end{array} \right\}
+\end{equation}
+}
+\underline{Elemento B}
+\\
+{
+\renewcommand{\arraystretch}{1.7}
+\begin{equation}
+[T^*_B]=
+\left[\begin{matrix}0.71 & 0.71 & 0.0 & 0.0 & 0.0 & 0.0\\-0.71 & 0.71 & 0.0 & 0.0 & 0.0 & 0.0\\0.0 & 0.0 & 1.0 & 0.0 & 0.0 & 0.0\\0.0 & 0.0 & 0.0 & 0.71 & 0.71 & 0.0\\0.0 & 0.0 & 0.0 & -0.71 & 0.71 & 0.0\\0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 1.0\end{matrix}\right]
+\end{equation}
+\begin{equation}
+\left\{ \begin{array}{c}
+{FX_2}^B \\ {FY_2}^B \\ {M_2}^B \\
+{FX_3}^B  \\ {FY_3}^B \\ {M_3}^B 
+\end{array} \right\} = 
+\left[\begin{matrix}316270.53 & 310697.48 & -8359.57 & -316270.53 & -310697.48 & -8359.57\\310697.48 & 316270.53 & 8359.57 & -310697.48 & -316270.53 & 8359.57\\-8359.57 & 8359.57 & 33438.29 & 8359.57 & -8359.57 & 16719.15\\-316270.53 & -310697.48 & 8359.57 & 316270.53 & 310697.48 & 8359.57\\-310697.48 & -316270.53 & -8359.57 & 310697.48 & 316270.53 & -8359.57\\-8359.57 & 8359.57 & 16719.15 & 8359.57 & -8359.57 & 33438.29\end{matrix}\right]
+\left\{ \begin{array}{c}
+{u_2}^B \\ {v_2}^B \\ {{\theta}_2}^B \\
+{u_3}^B  \\ {v_3}^B \\ {{\theta}_3}^B 
+\end{array} \right\}+
+\begin{bmatrix}1.05\\19.95\\12.6\\-1.05\\43.05\\-18.9\end{bmatrix}
+\end{equation}
+}
+
+\underline{Elemento C}
+{
+\renewcommand{\arraystretch}{1.7}
+\begin{equation}
+[T^*_C]=
+\left[\begin{matrix}1.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0\\0.0 & 1.0 & 0.0 & 0.0 & 0.0 & 0.0\\0.0 & 0.0 & 1.0 & 0.0 & 0.0 & 0.0\\0.0 & 0.0 & 0.0 & 1.0 & 0.0 & 0.0\\0.0 & 0.0 & 0.0 & 0.0 & 1.0 & 0.0\\0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 1.0\end{matrix}\right]
+\end{equation}
+\begin{equation}
+\left\{ \begin{array}{c}
+{FX_3}^C \\ {FY_3}^C \\ {M_3}^C \\
+{FX_4}^C  \\ {FY_4}^C \\ {M_4}^C 
+\end{array} \right\} = 
+\left[\begin{matrix}532000.0 & 0.0 & 0.0 & -532000.0 & 0.0 & 0.0\\0.0 & 3404.8 & 8512.0 & 0.0 & -3404.8 & 8512.0\\0.0 & 8512.0 & 28373.33 & 0.0 & -8512.0 & 14186.67\\-532000.0 & 0.0 & 0.0 & 532000.0 & 0.0 & 0.0\\0.0 & -3404.8 & -8512.0 & 0.0 & 3404.8 & -8512.0\\0.0 & 8512.0 & 14186.67 & 0.0 & -8512.0 & 28373.33\end{matrix}\right]
+\left\{ \begin{array}{c}
+{u_3}^C \\ {v_3}^C \\ {{\theta}_3}^C \\
+{u_4}^C  \\ {v_4}^C \\ {{\theta}_4}^C 
+\end{array} \right\}+
+\begin{bmatrix}0.0\\47.25\\25.16\\0.0\\5.25\\-7.66\end{bmatrix}
+\end{equation}
+}
+
+\underline{Elemento D}
+\\
+{
+\renewcommand{\arraystretch}{1.7}
+\begin{equation}
+[T^*_D]=
+\left[\begin{matrix}0.71 & -0.71 & 0.0 & 0.0 & 0.0 & 0.0\\0.71 & 0.71 & 0.0 & 0.0 & 0.0 & 0.0\\0.0 & 0.0 & 1.0 & 0.0 & 0.0 & 0.0\\0.0 & 0.0 & 0.0 & 0.71 & -0.71 & 0.0\\0.0 & 0.0 & 0.0 & 0.71 & 0.71 & 0.0\\0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 1.0\end{matrix}\right]
+\end{equation}\begin{equation}
+\left\{ \begin{array}{c}
+{FX_4}^D \\ {FY_4}^D \\ {M_4}^D \\
+{FX_5}^D  \\ {FY_5}^D \\ {M_5}^D 
+\end{array} \right\} = 
+\left[\begin{matrix}316270.53 & -310697.48 & 8359.57 & -316270.53 & 310697.48 & 8359.57\\-310697.48 & 316270.53 & 8359.57 & 310697.48 & -316270.53 & 8359.57\\8359.57 & 8359.57 & 33438.29 & -8359.57 & -8359.57 & 16719.15\\-316270.53 & 310697.48 & -8359.57 & 316270.53 & -310697.48 & -8359.57\\310697.48 & -316270.53 & -8359.57 & -310697.48 & 316270.53 & -8359.57\\8359.57 & 8359.57 & 16719.15 & -8359.57 & -8359.57 & 33438.29\end{matrix}\right]
+\left\{ \begin{array}{c}
+{u_4}^D \\ {v_4}^D \\ {{\theta}_4}^D \\
+{u_5}^D  \\ {v_5}^D \\ {{\theta}_5}^D 
+\end{array} \right\}+
+\begin{bmatrix}28.99\\1.24\\11.4\\1.77\\-1.24\\-3.98\end{bmatrix}
+\end{equation}
+}
+\underline{Elemento E}
+\\
+{
+\renewcommand{\arraystretch}{1.7}
+\begin{equation}
+[T^*_E]=
+\left[\begin{matrix}0.0 & 1.0 & 0.0 & 0.0 & 0.0 & 0.0\\-1.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0\\0.0 & 0.0 & 1.0 & 0.0 & 0.0 & 0.0\\0.0 & 0.0 & 0.0 & 0.0 & 1.0 & 0.0\\0.0 & 0.0 & 0.0 & -1.0 & 0.0 & 0.0\\0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 1.0\end{matrix}\right]
+\end{equation}
+\begin{equation}
+\left\{ \begin{array}{c}
+{FX_5}^E \\ {FY_5}^E \\ {M_5}^E \\
+{FX_6}^E  \\ {FY_6}^E \\ {M_6}^E 
+\end{array} \right\} = 
+\left[\begin{matrix}277642.84 & 0.0 & -410347.54 & -270000.01 & 0.0 & -406527.14\\0.0 & 4029092.58 & 0.0 & 0.0 & -4029092.58 & 0.0\\-410347.54 & 0.0 & 817201.17 & 406527.14 & 0.0 & 406963.51\\-270000.01 & 0.0 & 406527.14 & 277642.84 & 0.0 & 410347.54\\0.0 & -4029092.58 & 0.0 & 0.0 & 4029092.58 & 0.0\\-406527.14 & 0.0 & 406963.51 & 410347.54 & 0.0 & 817201.17\end{matrix}\right]
+\left\{ \begin{array}{c}
+{u_5}^E \\ {v_5}^E \\ {{\theta}_5}^E \\
+{u_6}^E  \\ {v_6}^E \\ {{\theta}_6}^E 
+\end{array} \right\}+
+\left[\begin{matrix}0.0\\0.0\\0.0\\0.0\\0.0\\0.0\end{matrix}\right]
+\end{equation}
+}
+
+\medskip
+
+%------------------------------------------------
+
+\section{Cálculo de los desplazamientos nodales}
+La porción del sistema de ecuaciones que contiene las fuerzas nodales conocidas y los desplazamiento nodales desconocidas es:
+\\
+\subsection{Ensamblaje del sistema de ecuaciones}
+las ecuaciones de equilibrio que se utilizan para el ensamblaje del sistema son las siguientes:
+\\
+\\
+{
+\renewcommand{\arraystretch}{1.3}
+\begin{equation}
+    \begin{Bmatrix}
+        M_1\\
+        FX_2\\
+        FY_2\\
+        M_2\\
+        FX_3\\
+        FY_3\\
+        M_3\\
+        FX_4\\
+        FY_4\\
+        M_4^C\\
+        M_4^D\\
+        FX_5\\
+        FY_5\\
+        M_5\\
+        M_6\\
+    \end{Bmatrix} 
+= 
+    \left[\begin{matrix}
+        M_1^A\\
+        FX_2^A+FX_2^B\\
+        FY_2^A+FY_2^B\\
+        M_2^A+M_2^B\\
+        FX_3^B+FX_3^C\\
+        FY_3^B+FY_3^C\\
+        M_3^B+M_3^C\\
+        FX_4^C+FX_4^D\\
+        FY_4^C+FY_4^D\\
+        M_4^C\\
+        M_4^D\\
+        FX_5^D+FX_5^E\\
+        FY_5^D+FY_5^E\\
+        M_5^D+M_5^E\\
+        M_6^E\\
+    \end{matrix}\right] * 
+    \begin{Bmatrix}
+        \theta_1\\
+        u_2\\
+        v_2\\
+        \theta_2\\
+        u_3\\
+        v_3\\
+        \theta_3\\
+        u_4\\
+        v_4\\
+        \theta_4^C\\
+        \theta_4^D\\
+        u_5\\
+        v_5\\
+        \theta_5\\
+        \theta_6\\
+    \end{Bmatrix}=
+    \begin{bmatrix}
+        0\\
+        0\\
+        0\\
+        0\\
+        0\\
+        0\\
+        0\\
+        0\\
+        0\\
+        0\\
+        0\\
+        0\\
+        0\\
+        0\\
+        0
+    \end{bmatrix}
+    
+}
+\newpage
+\begin{sideways}
+{\footnotesize
+\begin{equation*}\label{Ecuaciones de equilibrio gobernate de la estructura}
+ \left[\begin{array}{ccccccccccccccc}817201.17 & 406527.14 & 0.0 & 406963.51 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0\\406527.14 & 593913.37 & 310697.48 & 401987.96 & -316270.53 & -310697.48 & -8359.57 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0\\0.0 & 310697.48 & 4345363.11 & 8359.57 & -310697.48 & -316270.53 & 8359.57 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0\\406963.51 & 401987.96 & 8359.57 & 850639.46 & 8359.57 & -8359.57 & 16719.15 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0\\0.0 & -316270.53 & -310697.48 & 8359.57 & 848270.53 & 310697.48 & 8359.57 & -532000.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0\\0.0 & -310697.48 & -316270.53 & -8359.57 & 310697.48 & 319675.33 & 152.43 & 0.0 & -3404.8 & 8512.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0\\0.0 & -8359.57 & 8359.57 & 16719.15 & 8359.57 & 152.43 & 61811.63 & 0.0 & -8512.0 & 14186.67 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0\\0.0 & 0.0 & 0.0 & 0.0 & -532000.0 & 0.0 & 0.0 & 848270.53 & -310697.48 & 0.0 & 8359.57 & -316270.53 & 310697.48 & 8359.57 & 0.0\\0.0 & 0.0 & 0.0 & 0.0 & 0.0 & -3404.8 & -8512.0 & -310697.48 & 319675.33 & -8512.0 & 8359.57 & 310697.48 & -316270.53 & 8359.57 & 0.0\\0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 8512.0 & 14186.67 & 0.0 & -8512.0 & 28373.33 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0\\0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 8359.57 & 8359.57 & 0.0 & 33438.29 & -8359.57 & -8359.57 & 16719.15 & 0.0\\0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & -316270.53 & 310697.48 & 0.0 & -8359.57 & 593913.37 & -310697.48 & 401987.96 & 406527.14\\0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 310697.48 & -316270.53 & 0.0 & -8359.57 & -310697.48 & 4345363.11 & -8359.57 & 0.0\\0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 8359.57 & 8359.57 & 0.0 & 16719.15 & 401987.96 & -8359.57 & 850639.46 & 406963.51\\0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 406527.14 & 0.0 & 406963.51 & 817201.17\end{array}\right]
+ }
+\left\{ \begin{array}{c}
+{{\theta}_1} \\ {u_2} \\ {v_2} \\ {{\theta}_2} \\{u_3} \\
+{v_3} \\ {{\theta}_3} \\ {u_4} \\ {v_4} \\{{\theta}_4}^C \\
+{{\theta}_4}^D \\ {u_5} \\ {v_5} \\ {{\theta}_5} \\{{\theta}_6} \\
+\end{array} \right\}+
+ \begin{bmatrix}0.0\\1.05\\19.95\\12.6\\-1.05\\90.3\\6.26\\28.99\\6.49\\-7.66\\11.4\\1.77\\-1.24\\-3.98\\0.0\end{bmatrix}
+ \end{equation*}
+ \end{sideways}\\
+ \\
+
+
+{
+\renewcommand{\arraystretch}{1.2}
+\begin{center}
+
+\begin{equation}\label{Desplazamientos Globales}
+\left\{ \begin{array}{c}
+{{\theta}_1} \\ {u_2} \\ {v_2} \\ {{\theta}_2} \\{u_3} \\
+{v_3} \\ {{\theta}_3} \\ {u_4} \\ {v_4} \\{{\theta}_4}^C \\
+{{\theta}_4}^D \\ {u_5} \\ {v_5} \\ {{\theta}_5} \\{{\theta}_6} \\
+\end{array} \right\}=
+ \begin{bmatrix}0.000675\\-0.00183\\-2.51 \cdot 10^{-5}\\0.00047\\0.00316\\-0.00521\\-0.00135\\0.00309\\0.00167\\0.00301\\-0.000963\\0.00137\\-3.61 \cdot 10^{-6}\\-0.000452\\-0.000456\end{bmatrix}
+\end{equation}
+\end{center}
+}
+
+\\
+
+
+
+\subsection{Cálculo de las reacciones y fuerzas que el suelo ejerce sobre las pilas en coordenadas globales.}
+\subsubsection{Reacciones}\\
+\\
+Una vez teniendo determinados los desplazamientos nodales se procede a determinar las reacciones en $FX_1$,$FY_1$,$FX_6$,$FY_6$ haciendo uso de la porción que las realciona con los desplazamientos hallados.
+
+
+\begin{equation}
+    \begin{Bmatrix}
+        FX_1\\
+        FY_1\\
+        FX_6\\
+        FY_6\\
+    \end{Bmatrix} = 
+    \arraycolsep=2 pt 
+    {\small
+     \left[\begin{array}{ccccccccccccccc}
+     406527.14 & 593913.37 & 310697.48 & 401987.96 & -316270.53 & -310697.48 & -8359.57 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0\\
+     0.0 & 310697.48 & 4345363.11 & 8359.57 & -310697.48 & -316270.53 & 8359.57 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0\\
+     0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & -316270.53 & 310697.48 & 0.0 & -8359.57 & 593913.37 & -310697.48 & 401987.96 & 406527.14\\
+     0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 310697.48 & -316270.53 & 0.0 & -8359.57 & -310697.48 & 4345363.11 & -8359.57 & 0.0
+     \end{array}\right] 
+     }
+     {\cdot} 
+    \begin{Bmatrix}
+        \theta_1\\
+        u_2\\
+        v_2\\
+        \theta_2\\
+        u_3\\
+        v_3\\
+        \theta_3\\
+        u_4\\
+        v_4\\
+        \theta_4^C\\
+        \theta_4^D\\
+        u_5\\
+        v_5\\
+        \theta_5\\
+        \theta_6\\
+    \end{Bmatrix}
+\end{equation}
+\\
+\begin{equation}
+    \begin{Bmatrix}
+        FX_1\\
+        FY_1\\
+        FX_6\\
+        FY_6\\
+    \end{Bmatrix} = 
+        \begin{Bmatrix}
+        25.268\\
+        100.957\\
+        1.217\\
+        14.543\\
+    \end{Bmatrix}
+\end{equation}
+\\
+\subsubsection{Fuerzas del suelo sobre las pilas}\\
+\\
+\underline{Elemento A}\\
+\\
+\begin{equation}
+f_s(x'_A) = 
+ 2.21 \cdot 10^{-15} \sin{\left (0.214 {x'_A} \right )} \sinh{\left (0.214 {x'_A} \right )} - 2.66 \sin{\left (0.214 {x'_A} \right )} \cosh{\left (0.214 {x'_A} \right )} - 13.5 \cos{\left (0.214 {x'_A} \right )} \sinh{\left (0.214 {x'_A} \right )}
+ \end{equation}\\
+ \\
+\underline{Elemento E}\\
+\begin{equation}
+f_s(x'_A) = 
+ 2.21 \cdot 10^{-15} \sin{\left (0.214 {x'_E} \right )} \sinh{\left (0.214 {x'_E} \right )} + 5.7 \sin{\left (0.214 {x'_E} \right )} \cosh{\left (0.214 {x'_E} \right )} + 5.18 \cos{\left (0.214 {x'_E} \right )} \sinh{\left (0.214 {x'_E} \right )}
+ \end{equation}
+
+\section{Cálculo de las funciones y diagramas de desplazamientos para cada elemento}
+\\
+\underline{Elemento A}
+\begin{subequation}
+\begin{align}
+    
+    u_A(x'_A) &=
+     - 8.35 \cdot 10^{-6} {x'_A} \\
+     \\
+     v_A(x'_A) &= 
+      - 4.34 \cdot 10^{-19} \sin{\left (0.214 {x'_A} \right )} \sinh{\left (0.214 {x'_A} \right )} + 0.000521 \sin{\left (0.214 {x'_A} \right )} \cosh{\left (0.214 {x'_A}\right )} + 0.00264 \cos{\left (0.214 x \right )} \sinh{\left (0.214 {x'_A} \right )}
+ \end{align}  
+\end{subequation}\\
+\underline{Elemento B}\\
+\begin{subequation}
+\begin{align}
+    
+    u_B(x'_B) &=
+     3.1 \cdot 10^{-7} {x'_B}^{3} - 3.75 \cdot 10^{-5} {x'_B} - 0.00131  \\
+     \\
+     v_B(x'_B) &= 
+      - 1.16 \cdot 10^{-6} {x'_B}^{5} + 0.000203 {x'_B}^{3} - 0.00128 {x'_B}^{2} + 0.000471 {x'_B} + 0.00127
+ \end{align}  
+\end{subequation}
+\underline{Elemento C}\\
+\begin{subequation}
+
+    
+    u_B(x'_C) =
+     - 1.5 \cdot 10^{-5} x'_C + 0.00316  \\
+     \\
+v_B(x'_C) = 
+\begin{cases}
+v^{I}_{C} & \text{si} \medskip 0 < x'_C \leq \frac{LC}{2}\\
+v^{II}_{C} & \text{si} \frac{LC}{2} \medskip < x'_C \leq LC
+\end{cases} \\
+
+\text{Donde:}\\ \\
+v^{I}_{C} =  4.66 \cdot 10^{-10} {x'_C}^{7} + 3.94 \cdot 10^{-6} {x'_C}^{5} - 4.94 \cdot 10^{-5} {x'_C}^{4} + 0.000178 {x'_C}^{3} + 0.000408 {x'_C}^{2} - 0.00135 {{x'_C}'_C}- 0.00521  \\ \\
+v^{II}_{C} =  - 6.83 \cdot 10^{-5} {x'_C}^{3} + 0.00103 {x'_C}^{2} - 0.00212 {x'_C} - 0.00482
+\\
+\end{subequation}\\
+\\
+\underline{Elemento D}\\
+\begin{subequation}
+\begin{align}
+    u_B(x'_D) &=
+     - 3.65 \cdot 10^{-7} {x'_D}^{3} + 3.29 \cdot 10^{-6} {x'_D}^{2} - 1.45 \cdot 10^{-5} {x'_D} + 0.001  \\
+     \vspace{5}
+     v_B(x'_D) &= 
+         - 1.16 \cdot 10^{-10} {x'_D}^{7} - 1.86 \cdot 10^{-9} {x'_D}^{6} + 1.37 \cdot 10^{-6} {x'_D}^{5} - 2.06 \cdot 10^{-5} {x'_D}^{4} + 8.46 \cdot 10^{-5} {x'_D}^{3} + 3.73 \cdot 10^{-7} {x'_D}^{2} - 0.000964 {x'_D} + 0.00337  
+ \end{align}  
+\end{subequation}
+\underline{Elemento E}\\
+\begin{center}
+\begin{subequation}
+    u_E(x'_E) =
+     - 1.2 \cdot 10^{-6} {X'_E}   \\
+     \\
+     v_B(x'_E) = {\small
+         - 4.34 \cdot 10^{-19} \sin{\left (0.214 {x'_E} \right )} \sinh{\left (0.214 {x'_E} \right )} - 0.00112 \sin{\left (0.214 {x'_E} \right )} \cosh{\left (0.214 {x'_E} \right )} - 0.00102 \cos{\left (0.214 {x'_E} \right )} \sinh{\left (0.214 {x'_E} \right )} }
+\end{subequation}
+\end{center}
+\bigskip
+\begin{figure}[htp]
+  \centering
+    \includegraphics[width=\textwidth]{Graficas/ConfiguraciónDeformada.pdf}}
+    \caption{Configuración Deformada para cada uno de los elementos}
+\end{figure}
+\section{Cálculo de las fuerzas internas(axial, cortante y momento flector) para cada elemento en coordenadas locales}\\
+
+A partir de los campos de desplazamientos en coordenadas locales se obtienen derivando las fuerzas internas para cada elemento.\\
+
+\\
+\underline{Elemento A}\\
+\\
+\begin{equation}
+\begin{subequation}
+    P_E(x'_A) = -101.0\\
+    V_E(x'_A) =  37.7 \sin{\left (0.214 {x'_A} \right )} \sinh{\left (0.214 {x'_A} \right )} - 5.18 \cdot 10^{-15} \sin{\left (0.214 {x'_A} \right )} \cosh{\left (0.214 {x'_A} \right )} + 5.18 \cdot 10^{-15} \cos{\left (0.214 {x'_A} \right )} \sinh{\left (0.214 {x'_A} \right )} + 25.3 \cos{\left (0.214 {x'_A} \right )} \cosh{\left (0.214 {x'_A} \right )} \\
+    \\
+    M_E(x'_A) =  - 147.0 \sin{\left (0.213650622158882 {x'_A} \right )} \cosh{\left (0.213650622158882 {x'_A} \right )} + 29.1 \cos{\left (0.213650622158882 {x'_A} \right )} \sinh{\left (0.213650622158882 {x'_A} \right )} - 2.42 \cdot 10^{-14} \cos{\left (0.213650622158882 {x'_A} \right )} \cosh{\left (0.213650622158882 {x'_A} \right )} 
+    
+\end{subequation}
+\end{equation}
+
+\begin{equation}
+     \begin{tabular}{rrrr}
+\toprule
+ $x'_A$ &     P(x'_A) &    V(x'_A) &    M(x'_A) \\
+\midrule
+ 0.000 & -100.957 &  25.268 &  -0.000 \\
+ 0.333 & -100.957 &  25.459 &  -8.444 \\
+ 0.667 & -100.957 &  26.031 & -17.015 \\
+ 1.000 & -100.957 &  26.980 & -25.840 \\
+ 1.333 & -100.957 &  28.299 & -35.043 \\
+ 1.667 & -100.957 &  29.980 & -44.746 \\
+ 2.000 & -100.957 &  32.009 & -55.068 \\
+ 2.333 & -100.957 &  34.372 & -66.122 \\
+ 2.667 & -100.957 &  37.049 & -78.017 \\
+ 3.000 & -100.957 &  40.018 & -90.854 \\
+\bottomrule
+\end{tabular}
+\end{equation}
+
+\underline{Elemento B}\\
+\\
+\begin{equation}
+
+\begin{subequation}
+    P_E(x'_A) = - 0.000244 {x'_B}^{3} + 2.48 {x'_B}^{2} - 99.7 \\
+    \\
+    V_E(x'_A) =   - 0.000488 {x'_B}^{4} + 2.48 {x'_B}^{2} - 43.1 \\
+    \\
+    M_E(x'_A) = - 0.823 {x'_B}^{3} + 43.1 {x'_B} - 90.8   
+\end{subequation}
+\end{equation}
+\\
+\begin{equation}
+ \begin{tabular}{rrrr}
+\toprule
+ $x'_B$ &    P(x'_B) &    V(x'_B) &    M(x'_B) \\
+\midrule
+ 0.000 & -99.685 & -43.091 & -90.854 \\
+ 0.471 & -99.135 & -42.541 & -70.627 \\
+ 0.943 & -97.485 & -40.891 & -50.919 \\
+ 1.414 & -94.735 & -38.141 & -32.248 \\
+ 1.886 & -90.885 & -34.291 & -15.132 \\
+ 2.357 & -85.935 & -29.341 &  -0.091 \\
+ 2.828 & -79.886 & -23.292 &  12.358 \\
+ 3.300 & -72.736 & -16.142 &  21.696 \\
+ 3.771 & -64.486 &  -7.892 &  27.404 \\
+ 4.243 & -55.137 &   1.457 &  28.964 \\
+\bottomrule
+\end{tabular}
+\end{equation}
+\underline{Elemento C}\\
+\\
+\begin{subequation}
+    P_E(x'_A) = - 0.000244 {x'_B}^{3} + 2.48 {x'_B}^{2} - 99.7 \\
+    \\
+    V_E(x'_A) =   - 0.000488 {x'_B}^{4} + 2.48 {x'_B}^{2} - 43.1 \\
+    \\
+    M_E(x'_A) = - 0.823 {x'_B}^{3} + 43.1 {x'_B} - 90.8   
+\end{subequation}
+
+\\
+\begin{equation}
+ \begin{tabular}{rrrr}
+\toprule
+ $x'_C$ &    P(x'_C) &    V(x'_C) &    M(x'_C) \\
+\midrule
+ 0.000 & -40.018 & -37.957 &  28.964 \\
+ 0.556 & -40.018 & -17.217 &  44.050 \\
+ 1.111 & -40.018 &  -1.661 &  49.053 \\
+ 1.667 & -40.018 &   8.709 &  46.855 \\
+ 2.222 & -40.018 &  13.895 &  40.337 \\
+ 2.778 & -40.018 &  14.543 &  32.317 \\
+ 3.333 & -40.018 &  14.543 &  24.238 \\
+ 3.889 & -40.018 &  14.543 &  16.159 \\
+ 4.444 & -40.018 &  14.543 &   8.079 \\
+ 5.000 & -40.018 &  14.543 &  -0.000 \\
+\bottomrule
+\end{tabular}
+\end{equation}
+\underline{Elemento D}\\
+\\
+\begin{subequation}
+    P_E(x'_D) =  - 2.92 {x'_D}^{2} + 17.5 {x'_D} - 38.6 \\
+    \\
+    V_E(x'_D) =   - 2.92 {x'_D}^{2} + 17.5 {x'_D} - 18.0 \\
+    \\
+    M_E(x'_D) = {x'_D} \left(0.000977 {x'_D}^{3} + 0.971 {x'_D}^{2} - 8.75 {x'_D} + 18.0\right)   
+\end{subequation}
+\\
+\\
+\begin{equation}
+ \begin{tabular}{rrrr}
+\toprule
+ $x'_D$ &    P(x'_D) &    V(x'_D) &    M(x'_D) \\
+\midrule
+ 0.000 & -38.580 & -18.014 &  -0.000 \\
+ 0.471 & -30.979 & -10.412 &   6.649 \\
+ 0.943 & -24.674 &  -4.107 &  10.020 \\
+ 1.414 & -19.665 &   0.902 &  10.725 \\
+ 1.886 & -15.952 &   4.614 &   9.374 \\
+ 2.357 & -13.536 &   7.030 &   6.578 \\
+ 2.828 & -12.416 &   8.150 &   2.949 \\
+ 3.300 & -12.592 &   7.974 &  -0.902 \\
+ 3.771 & -14.065 &   6.501 &  -4.365 \\
+ 4.243 & -16.834 &   3.732 &  -6.828 \\
+\bottomrule
+\end{tabular}
+\end{equation}
+\underline{Elemento E}\\
+\\
+\begin{subequation}
+    P_E(x'_E) = -14.5  \\
+    \\
+    V_E(x'_A) =   - 25.5 \sin{\left (0.214 {x'_E} \right )} \sinh{\left (0.214 {x'_E} \right )} - 5.18 \cdot 10^{-15} \sin{\left (0.214 {x'_E} \right )} \cosh{\left (0.214 {x'_E} \right )} + 5.18 \cdot 10^{-15} \cos{\left (0.214 {x'_E} \right )} \sinh{\left (0.214 {x'_E} \right )} + 1.22 \cos{\left (0.214 {x'_E} \right )} \cosh{\left (0.214 {x'_E} \right )}  \\
+    \\
+    M_E(x'_A) =  56.8 \sin{\left (0.214 {x'_E} \right )} \cosh{\left (0.214 {x'_E} \right )} - 62.5 \cos{\left (0.214 {x'_E} \right )} \sinh{\left (0.214 {x'_E} \right )} - 2.42 \cdot 10^{-14} \cos{\left (0.214 {x'_E} \right )} \cosh{\left (0.214 {x'_E} \right )}     
+\end{subequation}
+\\
+\begin{center}
+\begin{equation}
+ \begin{tabular}{rrrr}
+\toprule
+ $x_E$ &    P(x'_E) &   V(x'_E) &   M(x'_E) \\
+\midrule
+ 0.000 & -14.543 &  1.217 & -0.000 \\
+ 0.333 & -14.543 &  1.088 & -0.391 \\
+ 0.667 & -14.543 &  0.700 & -0.696 \\
+ 1.000 & -14.543 &  0.054 & -0.829 \\
+ 1.333 & -14.543 & -0.852 & -0.703 \\
+ 1.667 & -14.543 & -2.016 & -0.232 \\
+ 2.000 & -14.543 & -3.440 &  0.670 \\
+ 2.333 & -14.543 & -5.123 &  2.090 \\
+ 2.667 & -14.543 & -7.065 &  4.114 \\
+ 3.000 & -14.543 & -9.264 &  6.828 \\
+\bottomrule
+\end{tabular}
+\end{equation}
+\end{center}
+\subsection{Diagramas campos de las fuerzas internas}
+\\
+\begin{figure}[htp]
+  \centering
+    \includegraphics[width=\textwidth]{Graficas/Campo Fuerza Axial.pdf}}
+    \caption{Campo de Fuerza Axial}
+\end{figure}
+\begin{figure}[htp]
+  \centering
+    \includegraphics[width=\textwidth]{Graficas/Campo Fuerza Cortante.pdf}}
+    \caption{Campo Fuerza Cortante}
+\end{figure}
+\begin{figure}[htp]
+  \centering
+    \includegraphics[width=\textwidth]{Graficas/Campo Momento Flector.pdf}}
+    \caption{Campo Momento Flector}
+\end{figure}
+%------------------------------------------------
+
+\end{document}
+
+...
