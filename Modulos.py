@@ -67,6 +67,10 @@ def Gxx(x, Le, Ee, Ae):
 
 
 def cdeshomogeneo(ui, uj, vi, vj, Theta_i, Theta_j, x, L):
+    """ Cálculo del campo de desplazamiento homogeneo 
+    Dónde L = longitud del elemento, x una variable simbolica 
+    y cada uno de los desplazamientos hallados y devuelve Ueh, Veh respectivamente"""
+
     Ueh = Fforma(x, L)[0]*ui + Fforma(x, L)[3]*uj
     Veh = Fforma(x, L)[1]*vi + Fforma(x, L)[2]*Theta_i + \
         Fforma(x, L)[4]*vj + Fforma(x, L)[5]*Theta_j
@@ -74,7 +78,8 @@ def cdeshomogeneo(ui, uj, vi, vj, Theta_i, Theta_j, x, L):
     return l
 
 
-def cdesempotrado(xi, xe, x, Le, Ee, Ae, p, q):
+def cdesempotrado(xi, xe, x, Le, Ee, Ie, Ae, p, q):
+    """ Cálculo del campo de desplazamiento empotrado y devuelve Uef, Vef respectivamente"""
 
     Uef = sy.integrate(p.subs({x: xi})*Gxx(x, Le, Ee, Ae)[1], (xi, 0, xe)) + sy.integrate(
         p.subs({x: xi})*Gxx(x, Le, Ee, Ae)[0], (xi, xe, Le))

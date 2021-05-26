@@ -260,7 +260,9 @@ u3_D, v3_D, theta3_D, u5_D, v5_D, theta5_D = Des_locales(DesNod_LOC_D)
 ''' 
 Reacciones en los nodos 1, 4, 5
 '''
-
+"""
+REVISAR!!!!
+"""
 FX1 = float(
     np.array(KA[0, :]@DesNod_GLO_A).astype(np.float64)) + float(VA_Emp_Glo[0, 0])
 FY1 = float(
@@ -284,3 +286,22 @@ dict_reacciones = {"FX1": FX1, "FY1": FY1, "M1": M1,
                    "FX4": FX4, "FY4": FY4, "FX5": FX5, "FY5": FY5, "M5": M5}
 
 Data_reacciones = pd.DataFrame([dict_reacciones]).T
+
+# %% Campos de desplazamientos para cada uno de los elementos
+
+xi = sy.symbols('xi')
+# para los elementos tipo portico B, C y D
+
+UH_B, VH_B = cdeshomogeneo(u2_B, u3_B, v2_B, v3_B, theta2_B, theta3_B, x, LB)[
+    0], cdeshomogeneo(u2_B, u3_B, v2_B, v3_B, theta2_B, theta3_B, x, LB)[1]
+UF_B, VF_B = 0, 0
+
+UH_C, VH_C = cdeshomogeneo(u4_C, u3_C, v4_C, v3_C, theta4_C, theta3_C, x, LC)[
+    0], cdeshomogeneo(u4_C, u3_C, v4_C, v3_C, theta4_C, theta3_C, x, LC)[1]
+UF_C, VF_C = cdesempotrado(xi, 3, x, LC, E, Ix_P, Area_portico, p_C, q_C)[
+    0], cdesempotrado(xi, 3, x, LC, E, Ix_P, Area_portico, p_C, q_C)[1]
+
+UH_D, VH_D = cdeshomogeneo(u3_D, u5_D, v3_D, v5_D, theta3_D, theta5_D, x, LD)[
+    0], cdeshomogeneo(u3_D, u5_D, v3_D, v5_D, theta3_D, theta5_D, x, LD)[1]
+# UF_D, VF_D = cdesempotrado(xi, 0, x, LB, E,Ix_P, Area_portico, 0, 0)[
+#     0], cdesempotrado(xi, 0, x, LB, E,Ix_P, Area_portico, 0, 0)[1]
