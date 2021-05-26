@@ -203,6 +203,10 @@ Theta5 = 0
 
 
 def Vect_des_GLO_and_LOC(ui, vi, thetai, uj, vj, thetaj, Mtrans_Elem):
+    """
+    Creación de los vectores de desplazamiento para cada uno de los elementos 
+    en los cuales se discretiza desplazamientos nodales en el sistema coordenado global como en el sistema coordenado local de cada elemento  
+    """
     DesNod_GLO_E = sy.zeros(6, 1)
 
     DesNod_GLO_E[0, 0] = ui
@@ -231,9 +235,8 @@ DesNod_GLO_D, DesNod_LOC_D = Vect_des_GLO_and_LOC(
 
 
 def Des_locales(DesNod_LOC_Elem):
-
-    # i,j Inicio y final del elemto respectivamente
-
+    """ Creación de las variables de desplazamiento para cada par cada elemento 
+    con i,j como Inicio y final del elemento respectivamente. """
     ui_E = DesNod_LOC_Elem[0, 0]
     vi_E = DesNod_LOC_Elem[1, 0]
     thetai_E = DesNod_LOC_Elem[2, 0]
