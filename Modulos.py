@@ -40,7 +40,7 @@ def Fforma(x, L):
 
 
 def Gyy(x, xi, Le, Ee, Ie):
-    gyy1 = ((Le**3)/(6*Ee*Ie))*(-1*(x/Le)**3*Fforma(xi, Le)[1]
+    gyy1 = ((Le**3)/(6*Ee*Ie))*(-1*((x/Le)**3)*Fforma(xi, Le)[1]
                                 + (3*(x/Le)**2)*Fforma(xi, Le)[2]/Le)
     gyy2 = ((Le**3)/(6*Ee*Ie))*(-1*(1 - (x/Le))**3*Fforma(xi, Le)[4]
                                 - (3*(1 - (x/Le))**2)*Fforma(xi, Le)[5]/Le)
@@ -58,8 +58,8 @@ def Gyr(x, xi, Le, Ee, Ie):
 
 
 def Gxx(x, Le, Ee, Ae):
-    gxx1 = (Le/Ae*Ee)*Fforma(x, Le)[3]*Fforma(x, Le)[0]
-    gxx2 = (Le/Ae*Ee)*Fforma(x, Le)[0]*Fforma(x, Le)[3]
+    gxx1 = (Le/(Ae*Ee))*Fforma(x, Le)[3]*Fforma(x, Le)[0]
+    gxx2 = (Le/(Ae*Ee))*Fforma(x, Le)[0]*Fforma(x, Le)[3]
     list = [gxx1, gxx2]
     return list
 
