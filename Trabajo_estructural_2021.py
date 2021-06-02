@@ -122,7 +122,7 @@ for i in range(3):
         KB[3:,3:], KC[3:,3:] y KD[:,:3] para los desplazamientos de U3, V3, theta3 
 
         '''
-        Desnod[i, j] = KA[i, j+3] + KB[i, j]
+        Desnod[i, j] = KA[i+3, j+3] + KB[i, j]
         Desnod[i+3, j+3] = KB[i+3, j+3] + KC[i+3, j+3] + KD[i, j]
 
         # Verificación de la suma #
@@ -193,7 +193,7 @@ Theta3 = Desplaza[5, 0]
 
 U4 = 0
 V4 = 0
-Theta4 = Desplaza[0, 0]
+Theta4 = Desplaza[6, 0]
 
 U5 = 0
 V5 = 0
