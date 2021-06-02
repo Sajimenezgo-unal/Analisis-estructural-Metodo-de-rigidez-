@@ -296,12 +296,41 @@ UH_B, VH_B = cdeshomogeneo(u2_B, u3_B, v2_B, v3_B, theta2_B, theta3_B, x, LB)[
     0], cdeshomogeneo(u2_B, u3_B, v2_B, v3_B, theta2_B, theta3_B, x, LB)[1]
 UF_B, VF_B = 0, 0
 
+
+# El elemento C tiene dos campos de desplazamiento
+#   v1 entre 0 < x < 3
+#   v2 entre 3 < x < 6
 UH_C, VH_C = cdeshomogeneo(u4_C, u3_C, v4_C, v3_C, theta4_C, theta3_C, x, LC)[
     0], cdeshomogeneo(u4_C, u3_C, v4_C, v3_C, theta4_C, theta3_C, x, LC)[1]
-UF_C, VF_C = cdesempotrado(xi, 3, x, LC, E, Ix_P, Area_portico, p_C, q_C)[
-    0], cdesempotrado(xi, 3, x, LC, E, Ix_P, Area_portico, p_C, q_C)[1]
+
+
+#   v1 entre 0 < x < 3
+
+Uf_C1 = sy.integrate(0*Gxx(x, LC, E, Area_portico)[1], (xi, 0, x)) + sy.integrate(
+    p_C.subs({x: xi})*Gxx(x, LC, E, Area_portico)[0], (xi, sy.sqrt(10), LC))
+
+Vf_C1 = sy.integrate(0*Gyy(x, xi, LC, E, Ix_P)[1], (xi, 0, x)) + sy.integrate(
+    q_C.subs({x: xi})*Gyy(x, xi, LC, E, Ix_P)[0], (xi, sy.sqrt(10), LC))
+
+#   v2 entre 3 < x < 6
+
+Uf_C2 = sy.integrate(p_C.subs({xc: xi})*Gxx(x, LC, E, Area_portico)[1], (xi, sy.sqrt(10), x)) + sy.integrate(
+    p_C.subs({xc: xi})*Gxx(x, LC, E, Area_portico)[0], (xi, x, LC))
+
+Vf_C2 = sy.integrate(q_C.subs({xc: xi})*Gyy(x, xi, LC, E, Ix_P)[1], (xi, sy.sqrt(10), x)) + sy.integrate(
+    q_C.subs({xc: xi})*Gyy(x, xi, LC, E, Ix_P)[0], (xi, x, LC))
+
+# print('verificación \n', 'derivada 4 = ', sy.diff(sy.simplify(sy.N(Uf_C2)),(x,4))))
+# print('Uf_C1 = ', sy.simplify(sy.N(Uf_C1,3)), '\n','Vf_C1 = ', sy.simplify(sy.N(Vf_C1,3)))
 
 UH_D, VH_D = cdeshomogeneo(u3_D, u5_D, v3_D, v5_D, theta3_D, theta5_D, x, LD)[
     0], cdeshomogeneo(u3_D, u5_D, v3_D, v5_D, theta3_D, theta5_D, x, LD)[1]
-# UF_D, VF_D = cdesempotrado(xi, 0, x, LB, E,Ix_P, Area_portico, 0, 0)[
-#     0], cdesempotrado(xi, 0, x, LB, E,Ix_P, Area_portico, 0, 0)[1]
+
+UF_D, VF_D = cdesempotrado(xi, 0, x, LD, E, Ix_P, Area_portico, p_D.subs({xd: x}), q_D.subs({xd: x}))[
+    0], cdesempotrado(xi, 0, x, LD, E, Ix_P, Area_portico, p_D.subs({xd: x}), q_D.subs({xd: x}))[1]
+
+Uf_D = sy.integrate(p_D.subs({xd: xi})*Gxx(x, LD, E, Area_portico)[1], (xi, 0, x)) + sy.integrate(
+    (p_D).subs({xd: xi})*Gxx(x, LB, E, Area_portico)[0], (xi, x, LD))
+
+Vf_D = sy.integrate(q_D.subs({xd: xi})*Gyy(x, xi, LD, E, Ix_P)[1], (xi, 0, x)) + sy.integrate(
+    (q_D).subs({xd: xi})*Gyy(x, xi, LD, E, Ix_P)[0], (xi, x, LD))
