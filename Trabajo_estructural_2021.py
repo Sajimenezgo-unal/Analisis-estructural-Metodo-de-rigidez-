@@ -135,6 +135,9 @@ for i in range(3):
         # print('KB[{0}+3,{1}+3]'.format(i, j) + ' + ' + 'KC[{0}+3,{1}+3]'.format(i, j) + ' + ' + 'KC[{0},{1}]'.format(i, j))
 
 Desnod[6, 6] = KC[2, 2]
+Desnod[6, 5] = KC[2, 5]
+Desnod[6, 4] = KC[2, 4]
+Desnod[6, 3] = KC[2, 3]
 # print(Desnod)
 
 Vect_emp = sy.zeros(7, 1)
