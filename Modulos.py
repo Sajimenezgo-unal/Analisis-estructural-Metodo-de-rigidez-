@@ -57,9 +57,9 @@ def Gyr(x, xi, Le, Ee, Ie):
     return list
 
 
-def Gxx(x, Le, Ee, Ae):
-    gxx1 = (Le/(Ae*Ee))*Fforma(x, Le)[3]*Fforma(x, Le)[0]
-    gxx2 = (Le/(Ae*Ee))*Fforma(x, Le)[0]*Fforma(x, Le)[3]
+def Gxx(x, xi, Le, Ee, Ae):
+    gxx1 = (Le/(Ae*Ee))*Fforma(x, Le)[3]*Fforma(xi, Le)[0]
+    gxx2 = (Le/(Ae*Ee))*Fforma(x, Le)[0]*Fforma(xi, Le)[3]
     list = [gxx1, gxx2]
     return list
 
@@ -78,14 +78,14 @@ def cdeshomogeneo(ui, uj, vi, vj, Theta_i, Theta_j, x, L):
     return l
 
 
-def cdesempotrado(xi, xe, x, Le, Ee, Ie, Ae, p, q):
+def cdesempotrado(xi, x, Le, Ee, Ie, Ae, p, q):
     """ Cálculo del campo de desplazamiento empotrado y devuelve Uef, Vef respectivamente"""
 
-    Uef = sy.integrate(p.subs({x: xi})*Gxx(x, Le, Ee, Ae)[1], (xi, 0, xe)) + sy.integrate(
-        p.subs({x: xi})*Gxx(x, Le, Ee, Ae)[0], (xi, xe, Le))
+    Uef = sy.integrate(p.subs({x: xi})*Gxx(x, Le, Ee, Ae)[1], (xi, 0, x)) + sy.integrate(
+        p.subs({x: xi})*Gxx(x, Le, Ee, Ae)[0], (xi, x, Le))
 
-    Vef = sy.integrate(q.subs({x: xi})*Gyy(x, xi, Le, Ee, Ie)[1], (xi, 0, xe)) + sy.integrate(
-        q.subs({x: xi})*Gyy(x, xi, Le, Ee, Ie)[0], (xi, xe, Le))
+    Vef = sy.integrate(q.subs({x: xi})*Gyy(x, xi, Le, Ee, Ie)[1], (xi, 0, x)) + sy.integrate(
+        q.subs({x: xi})*Gyy(x, xi, Le, Ee, Ie)[0], (xi, x, Le))
 
     l = [Uef, Vef]
     return l

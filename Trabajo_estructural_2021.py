@@ -4,7 +4,7 @@
 """
 Created on Fri Apr  9 16:54:12 2021
 
-@author: Sajimenezgo 
+@author: Sajimenezgo
 """
 ### Trabajo Estructural ###
 
@@ -19,7 +19,7 @@ from sympy import init_printing
 init_printing()
 
 """
-IMPORTACIÓN DE LOS MODULOS LOS CUALES CONTIENEN TODAS LAS FORMULAS PARA EL DESARROLLO DEL EJERCICIO 
+IMPORTACIÓN DE LOS MODULOS LOS CUALES CONTIENEN TODAS LAS FORMULAS PARA EL DESARROLLO DEL EJERCICIO
 
 """
 
@@ -115,11 +115,11 @@ Desnod = sy.zeros(7, 7)
 for i in range(3):
     for j in range(3):
         '''
-        Suma de los componente de KA y KB de la siguiente manera 
-        KA[:,3:] y KB[:,:3] para los desplazamientos de U2, V2, theta2 
+        Suma de los componente de KA y KB de la siguiente manera
+        KA[:,3:] y KB[:,:3] para los desplazamientos de U2, V2, theta2
 
-        Suma de los componente de KB, KC y KD de la siguiente manera 
-        KB[3:,3:], KC[3:,3:] y KD[:,:3] para los desplazamientos de U3, V3, theta3 
+        Suma de los componente de KB, KC y KD de la siguiente manera
+        KB[3:,3:], KC[3:,3:] y KD[:,:3] para los desplazamientos de U3, V3, theta3
 
         '''
         Desnod[i, j] = KA[i+3, j+3] + KB[i, j]
@@ -143,7 +143,7 @@ Vect_emp = sy.zeros(7, 1)
 
 for i in range(3):
     '''
-    Suma de las componentes de los vectores de empotramiento 
+    Suma de las componentes de los vectores de empotramiento
     '''
     Vect_emp[i, 0] = VA_Emp_Glo[i+3, 0] + VB_Emp_Glo[i, 0]
     Vect_emp[i+3, 0] = VB_Emp_Glo[i+3, 0] + \
@@ -157,7 +157,7 @@ for i in range(3):
 
 # %% Solución del Sistema matricial
 
-"""  
+"""
 Conversión a un array de pandas para utilizar la función linalg.solve()
 """
 
@@ -206,8 +206,8 @@ Theta5 = 0
 
 def Vect_des_GLO_and_LOC(ui, vi, thetai, uj, vj, thetaj, Mtrans_Elem):
     """
-    Creación de los vectores de desplazamiento para cada uno de los elementos 
-    en los cuales se discretiza desplazamientos nodales en el sistema coordenado global como en el sistema coordenado local de cada elemento  
+    Creación de los vectores de desplazamiento para cada uno de los elementos
+    en los cuales se discretiza desplazamientos nodales en el sistema coordenado global como en el sistema coordenado local de cada elemento
     """
     DesNod_GLO_E = sy.zeros(6, 1)
 
@@ -237,7 +237,7 @@ DesNod_GLO_D, DesNod_LOC_D = Vect_des_GLO_and_LOC(
 
 
 def Des_locales(DesNod_LOC_Elem):
-    """ Creación de las variables de desplazamiento para cada par cada elemento 
+    """ Creación de las variables de desplazamiento para cada par cada elemento
     con i,j como Inicio y final del elemento respectivamente. """
     ui_E = DesNod_LOC_Elem[0, 0]
     vi_E = DesNod_LOC_Elem[1, 0]
@@ -249,17 +249,17 @@ def Des_locales(DesNod_LOC_Elem):
     return ui_E, vi_E, thetai_E, uj_E, vj_E, thetaj_E
 
 
-u1_A, v1_A, theta1_A, u2_A, v2_A, theta2_A = Des_locales(DesNod_LOC_A)
+u1_A, v1_A, Theta1_A, u2_A, v2_A, Theta2_A = Des_locales(DesNod_LOC_A)
 
-u2_B, v2_B, theta2_B, u3_B, v3_B, theta3_B = Des_locales(DesNod_LOC_B)
+u2_B, v2_B, Theta2_B, u3_B, v3_B, Theta3_B = Des_locales(DesNod_LOC_B)
 
-u4_C, v4_C, theta4_C, u3_C, v3_C, theta3_C = Des_locales(DesNod_LOC_C)
+u4_C, v4_C, Theta4_C, u3_C, v3_C, Theta3_C = Des_locales(DesNod_LOC_C)
 
-u3_D, v3_D, theta3_D, u5_D, v5_D, theta5_D = Des_locales(DesNod_LOC_D)
+u3_D, v3_D, Theta3_D, u5_D, v5_D, Theta5_D = Des_locales(DesNod_LOC_D)
 
 # %% Cálculo de las reacciones
 
-''' 
+'''
 Reacciones en los nodos 1, 4, 5
 '''
 """
@@ -294,45 +294,60 @@ Data_reacciones = pd.DataFrame([dict_reacciones]).T
 xi = sy.symbols('xi')
 # para los elementos tipo portico B, C y D
 
-UH_B, VH_B = cdeshomogeneo(u2_B, u3_B, v2_B, v3_B, theta2_B, theta3_B, x, LB)[
-    0], cdeshomogeneo(u2_B, u3_B, v2_B, v3_B, theta2_B, theta3_B, x, LB)[1]
-UF_B, VF_B = 0, 0
+"""
+Campos de desplazamiento homogeneos
+"""
+# Elemento A
+uh_A, vh_A = cdeshomogeneo(u1_A, u2_A, v1_A, v2_A, Theta1_A, Theta2_A, x, LA)[0],\
+    cdeshomogeneo(u1_A, u2_A, v1_A, v2_A, Theta1_A, Theta2_A, x, LA)[1]
 
+# El elemento A solo posee un campo de desplazamiento homgeno debido que no tiene carga externa
 
-# El elemento C tiene dos campos de desplazamiento
+# Elemento B
+uh_B, vh_B = cdeshomogeneo(u2_B, u3_B, v2_B, v3_B, Theta2_B, Theta3_B, x, LB)[0],\
+    cdeshomogeneo(u2_B, u3_B, v2_B, v3_B, Theta2_B, Theta3_B, x, LB)[1]
+
+# El elemento B solo posee un campo de desplazamiento homgeno debido que no tiene carga externa
+
+# Elemento C
+uh_C, vh_C = cdeshomogeneo(u4_C, u3_C, v4_C, v3_C, Theta4_C, Theta3_C, x, LC)[0],\
+    cdeshomogeneo(u4_C, u3_C, v4_C, v3_C, Theta4_C, Theta3_C, x, LC)[1]
+# Elemento D
+uh_D, vh_D = cdeshomogeneo(u3_D, u5_D, v3_D, v5_D, Theta3_D, Theta5_D, x, LD)[0],\
+    cdeshomogeneo(u3_D, u5_D, v3_D, v5_D, Theta3_D, Theta5_D, x, LD)[1]
+
+"""
+Campos de desplazamiento empotrados o fixed
+"""
+# Elemento A
+# Elemento B
+# Elemento C
+"""
+El elemento C tiene dos campos de desplazamiento
+  v1 entre 0 < x < 3
+  v2 entre 3 < x < 6
+"""
 #   v1 entre 0 < x < 3
-#   v2 entre 3 < x < 6
-UH_C, VH_C = cdeshomogeneo(u4_C, u3_C, v4_C, v3_C, theta4_C, theta3_C, x, LC)[
-    0], cdeshomogeneo(u4_C, u3_C, v4_C, v3_C, theta4_C, theta3_C, x, LC)[1]
 
+uf_C1 = sy.integrate(0*Gxx(x, xi, LC, E, Area_portico)[1], (xi, 0, x)) + sy.integrate(
+    p_C.subs({xc: xi})*Gxx(x, xi, LC, E, Area_portico)[0], (xi, sy.sqrt(10), LC))
 
-#   v1 entre 0 < x < 3
-
-Uf_C1 = sy.integrate(0*Gxx(x, LC, E, Area_portico)[1], (xi, 0, x)) + sy.integrate(
-    p_C.subs({x: xi})*Gxx(x, LC, E, Area_portico)[0], (xi, sy.sqrt(10), LC))
-
-Vf_C1 = sy.integrate(0*Gyy(x, xi, LC, E, Ix_P)[1], (xi, 0, x)) + sy.integrate(
-    q_C.subs({x: xi})*Gyy(x, xi, LC, E, Ix_P)[0], (xi, sy.sqrt(10), LC))
+vf_C1 = sy.integrate(0*Gyy(x, xi, LC, E, Ix_P)[1], (xi, 0, x)) + sy.integrate(
+    q_C.subs({xc: xi})*Gyy(x, xi, LC, E, Ix_P)[0], (xi, sy.sqrt(10), LC))
 
 #   v2 entre 3 < x < 6
 
-Uf_C2 = sy.integrate(p_C.subs({xc: xi})*Gxx(x, LC, E, Area_portico)[1], (xi, sy.sqrt(10), x)) + sy.integrate(
-    p_C.subs({xc: xi})*Gxx(x, LC, E, Area_portico)[0], (xi, x, LC))
+uf_C2 = sy.integrate(p_C.subs({xc: xi})*Gxx(x, xi, LC, E, Area_portico)[1], (xi, sy.sqrt(10), x)) + sy.integrate(
+    p_C.subs({xc: xi})*Gxx(x, xi, LC, E, Area_portico)[0], (xi, x, LC))
 
-Vf_C2 = sy.integrate(q_C.subs({xc: xi})*Gyy(x, xi, LC, E, Ix_P)[1], (xi, sy.sqrt(10), x)) + sy.integrate(
+vf_C2 = sy.integrate(q_C.subs({xc: xi})*Gyy(x, xi, LC, E, Ix_P)[1], (xi, sy.sqrt(10), x)) + sy.integrate(
     q_C.subs({xc: xi})*Gyy(x, xi, LC, E, Ix_P)[0], (xi, x, LC))
 
-# print('verificación \n', 'derivada 4 = ', sy.diff(sy.simplify(sy.N(Uf_C2)),(x,4))))
-# print('Uf_C1 = ', sy.simplify(sy.N(Uf_C1,3)), '\n','Vf_C1 = ', sy.simplify(sy.N(Vf_C1,3)))
 
-UH_D, VH_D = cdeshomogeneo(u3_D, u5_D, v3_D, v5_D, theta3_D, theta5_D, x, LD)[
-    0], cdeshomogeneo(u3_D, u5_D, v3_D, v5_D, theta3_D, theta5_D, x, LD)[1]
+# Elemento D
 
-UF_D, VF_D = cdesempotrado(xi, 0, x, LD, E, Ix_P, Area_portico, p_D.subs({xd: x}), q_D.subs({xd: x}))[
-    0], cdesempotrado(xi, 0, x, LD, E, Ix_P, Area_portico, p_D.subs({xd: x}), q_D.subs({xd: x}))[1]
+uf_D = sy.integrate(p_D.subs({xd: xi})*Gxx(x, xi, LD, E, Area_portico)[1], (xi, 0, x)) + sy.integrate(
+    (p_D).subs({xd: xi})*Gxx(x, xi, LB, E, Area_portico)[0], (xi, x, LD))
 
-Uf_D = sy.integrate(p_D.subs({xd: xi})*Gxx(x, LD, E, Area_portico)[1], (xi, 0, x)) + sy.integrate(
-    (p_D).subs({xd: xi})*Gxx(x, LB, E, Area_portico)[0], (xi, x, LD))
-
-Vf_D = sy.integrate(q_D.subs({xd: xi})*Gyy(x, xi, LD, E, Ix_P)[1], (xi, 0, x)) + sy.integrate(
+vf_D = sy.integrate(q_D.subs({xd: xi})*Gyy(x, xi, LD, E, Ix_P)[1], (xi, 0, x)) + sy.integrate(
     (q_D).subs({xd: xi})*Gyy(x, xi, LD, E, Ix_P)[0], (xi, x, LD))
