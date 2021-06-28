@@ -11,9 +11,11 @@ Comentarios: usar print al exportar las tablas para
 
 # se importan las funciones del código Base
 from Trabajo_estructural_2021 import *
-
+import pandas as pd
 
 # Se crea la función que desarrolla las tablas
+
+
 def tablas(FI, x0, x1, n, F, Elem):
     """
     Genera las tablas para los valores de x_E/10
@@ -24,7 +26,6 @@ def tablas(FI, x0, x1, n, F, Elem):
             F: nombre de la fuerza interna
             Elem: Elemento al que coresponde la tabla 
     """
-    import pandas as pd
     xvalores = np.linspace(float(x0), float(x1), n)  # valores de x a evaluar
     """
     Diccionario = {'nombre1':'objeto1','nombre2':'objeto2'},
