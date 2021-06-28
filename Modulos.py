@@ -304,3 +304,17 @@ def Cargas2Locales(dirR, Q, theta):
 
     l = [p, q]
     return l
+
+
+def cdeshomogeneo_pilas(ui, uj, vi, vj, Theta_i, Theta_j, x, L, ke, Ie, Ee):
+    """ Cálculo del campo de desplazamiento homogeneo 
+    Dónde L = longitud del elemento, x una variable simbolica 
+    y cada uno de los desplazamientos hallados y devuelve Ueh, Veh respectivamente"""
+
+    Ueh = Fforma_pila(ke, L, Ie, Ee, x)[
+        0]*ui + Fforma_pila(ke, L, Ie, Ee, x)[3]*uj
+    Veh = Fforma_pila(ke, L, Ie, Ee, x)[1]*vi + Fforma_pila(ke, L, Ie, Ee, x)[2]*Theta_i + \
+        Fforma_pila(ke, L, Ie, Ee, x)[4]*vj + \
+        Fforma_pila(ke, L, Ie, Ee, x)[5]*Theta_j
+    l = [Ueh, Veh]
+    return l

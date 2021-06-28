@@ -15,11 +15,13 @@ import sympy as sy
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+from matplotlib import transforms
 from sympy import init_printing
 init_printing()
 
 """
 IMPORTACIÓN DE LOS MODULOS LOS CUALES CONTIENEN TODAS LAS FORMULAS PARA EL DESARROLLO DEL EJERCICIO
+DESARROLLADAS A PARTIR DE LA TEORIA DEL MÉTODO DE RIGIDEZ EN LAS NOTAS DE CLASE DE MECÁNICA ESTRUCTURAL 
 
 """
 
@@ -298,8 +300,10 @@ xi = sy.symbols('xi')
 Campos de desplazamiento homogeneos
 """
 # Elemento A
-uh_A, vh_A = cdeshomogeneo(u1_A, u2_A, v1_A, v2_A, Theta1_A, Theta2_A, x, LA)[0],\
-    cdeshomogeneo(u1_A, u2_A, v1_A, v2_A, Theta1_A, Theta2_A, x, LA)[1]
+
+uh_A, vh_A = cdeshomogeneo_pilas(u1_A, u2_A, v1_A, v2_A, Theta1_A, Theta2_A, x, LA, k, Ix_pila, E)[0],\
+    cdeshomogeneo_pilas(u1_A, u2_A, v1_A, v2_A, Theta1_A,
+                        Theta2_A, x, LA, k, Ix_pila, E)[1]
 
 # El elemento A solo posee un campo de desplazamiento homgeno debido que no tiene carga externa
 
@@ -351,3 +355,50 @@ uf_D = sy.integrate(p_D.subs({xd: xi})*Gxx(x, xi, LD, E, Area_portico)[1], (xi, 
 
 vf_D = sy.integrate(q_D.subs({xd: xi})*Gyy(x, xi, LD, E, Ix_P)[1], (xi, 0, x)) + sy.integrate(
     (q_D).subs({xd: xi})*Gyy(x, xi, LD, E, Ix_P)[0], (xi, x, LD))
+
+# Campos de desplazamientos totales
+
+# Elemento A
+uA, vA = uh_A, vh_A
+# Elemento B
+uB, vB = uh_B, vh_B
+# Elemento C
+uC_1, vC_1 = (uh_C + uf_C1), (vh_C + vf_C1)
+uC_2, vC_2 = (uh_C + uf_C2), (vh_C + vf_C2)
+# Elemento D
+uD, vD = (uh_D + uf_D), (vh_D + vf_D)
+
+# %%% Calculo de las fuerzas internas
+
+# Ix_pila
+# Ix_P
+# Area_portico
+# Area_pila
+
+# Elemento A
+P_A = Area_pila*E*sy.diff(uA, x, 1)  # Campo de fuerza axial
+M_A = E*Ix_pila*sy.diff(vA, x, 2)  # Campo de momento flector
+V_A = -E*Ix_pila*sy.diff(vA, x, 3)  # Campo de fuerza cortante
+F_soil = -k*vA  # Fuerza que el suelo ejerce sobre la viga
+
+# Elemento B
+P_B = Area_portico*E*sy.diff(uB, x, 1)  # Campo de fuerza axial
+M_B = Ix_P*E*sy.diff(vB, x, 2)  # Campo de momento flector
+V_B = -Ix_P*E*sy.diff(vB, x, 3)  # Campo de fuerza cortante
+
+# Elemento C
+P_C1 = Area_portico*E*sy.diff(uC_1, x, 1)  # Campo de fuerza axial Tramo 1
+M_C1 = Ix_P*E*sy.diff(vC_1, x, 2)  # Campo de momento flector Tramo 1
+V_C1 = -Ix_P*E*sy.diff(vC_1, x, 3)  # Campo de fuerza cortante Tramo 1
+
+P_C2 = Area_portico*E*sy.diff(uC_2, x, 1)  # Campo de fuerza axial Tramo 2
+M_C2 = Ix_P*E*sy.diff(vC_2, x, 2)  # Campo de momento flector Tramo 2
+V_C2 = -Ix_P*E*sy.diff(vC_2, x, 3)  # Campo de fuerza cortante Tramo 2
+
+# Elemento D
+P_D = Area_portico*E*sy.diff(uD, x, 1)  # Campo de fuerza axial
+M_D = Ix_P*E*sy.diff(vD, x, 2)  # Campo de momento flector
+V_D = -Ix_P*E*sy.diff(vD, x, 3)  # Campo de fuerza cortante
+
+
+# %%
