@@ -320,3 +320,35 @@ def cdeshomogeneo_pilas(ui, uj, vi, vj, Theta_i, Theta_j, x, L, ke, Ie, Ee):
         Fforma_pila(ke, L, Ie, Ee, x)[5]*Theta_j
     l = [Ueh, Veh]
     return l
+
+
+def Vect_des_GLO_and_LOC(ui, vi, thetai, uj, vj, thetaj, Mtrans_Elem):
+    """
+    Creación de los vectores de desplazamiento para cada uno de los elementos
+    en los cuales se discretiza desplazamientos nodales en el sistema coordenado global como en el sistema coordenado local de cada elemento
+    """
+    DesNod_GLO_E = sy.zeros(6, 1)
+
+    DesNod_GLO_E[0, 0] = ui
+    DesNod_GLO_E[1, 0] = vi
+    DesNod_GLO_E[2, 0] = thetai
+    DesNod_GLO_E[3, 0] = uj
+    DesNod_GLO_E[4, 0] = vj
+    DesNod_GLO_E[5, 0] = thetaj
+
+    DesNod_LOC_E = Mtrans_Elem@DesNod_GLO_E
+
+    return DesNod_GLO_E, DesNod_LOC_E
+
+
+def Des_locales(DesNod_LOC_Elem):
+    """ Creación de las variables de desplazamiento para cada par cada elemento
+    con i,j como Inicio y final del elemento respectivamente. """
+    ui_E = DesNod_LOC_Elem[0, 0]
+    vi_E = DesNod_LOC_Elem[1, 0]
+    thetai_E = DesNod_LOC_Elem[2, 0]
+    uj_E = DesNod_LOC_Elem[3, 0]
+    vj_E = DesNod_LOC_Elem[4, 0]
+    thetaj_E = DesNod_LOC_Elem[5, 0]
+
+    return ui_E, vi_E, thetai_E, uj_E, vj_E, thetaj_E
