@@ -259,14 +259,19 @@ u4_C, v4_C, Theta4_C, u3_C, v3_C, Theta3_C = Des_locales(DesNod_LOC_C)
 
 u3_D, v3_D, Theta3_D, u5_D, v5_D, Theta5_D = Des_locales(DesNod_LOC_D)
 
+# %% Fuerzas internas en los extremos de cada elemento
+
+f_inter_A = MA_loc@DesNod_LOC_A + Vec_Emp_A
+f_inter_B = MB_loc@DesNod_LOC_B + Vec_Emp_B
+f_inter_C = MC_loc@DesNod_LOC_C + Vec_Emp_C
+f_inter_D = MD_loc@DesNod_LOC_D + Vec_Emp_D
+
+
 # %% Cálculo de las reacciones
 
 '''
 Reacciones en los nodos 1, 4, 5
 '''
-"""
-REVISAR!!!!
-"""
 FX1 = float(
     np.array(KA[0, :]@DesNod_GLO_A).astype(np.float64)) + float(VA_Emp_Glo[0, 0])
 FY1 = float(
@@ -286,10 +291,12 @@ FY5 = float(
 M5 = float(np.array(KD[5, :]@DesNod_GLO_D).astype(np.float64)
            ) + float(VD_Emp_Glo[5, 0])
 
-dict_reacciones = {"FX1": FX1, "FY1": FY1, "M1": M1,
-                   "FX4": FX4, "FY4": FY4, "FX5": FX5, "FY5": FY5, "M5": M5}
+# dict_reacciones = {"FX1": FX1, "FY1": FY1, "M1": M1,
+#                    "FX4": FX4, "FY4": FY4, "FX5": FX5, "FY5": FY5, "M5": M5}
 
-Data_reacciones = pd.DataFrame([dict_reacciones]).T
+Data_reacciones = pd.DataFrame({"Reacciones": [f"{sy.N(FX1,4)} kN", f"{sy.N(FY1,5)} kN", f"{sy.N(M1,5)} kN m", f"{sy.N(FX4,5)} kN", f"{sy.N(FY4,5)} kN", f"{sy.N(FX5,5)} kN", f"{sy.N(FY5,5)} kN", f"{sy.N(M5,5)} kN m"]},
+                               index=['FX_1', 'FY_1', 'M_1', 'FX_4', 'FY_4', 'FX_5', 'FY_5', 'M_5'])
+
 
 # %% Campos de desplazamientos para cada uno de los elementos
 
@@ -351,7 +358,7 @@ vf_C2 = sy.integrate(q_C.subs({xc: xi})*Gyy(x, xi, LC, E, Ix_P)[1], (xi, sy.sqrt
 # Elemento D
 
 uf_D = sy.integrate(p_D.subs({xd: xi})*Gxx(x, xi, LD, E, Area_portico)[1], (xi, 0, x)) + sy.integrate(
-    (p_D).subs({xd: xi})*Gxx(x, xi, LB, E, Area_portico)[0], (xi, x, LD))
+    (p_D).subs({xd: xi})*Gxx(x, xi, LD, E, Area_portico)[0], (xi, x, LD))
 
 vf_D = sy.integrate(q_D.subs({xd: xi})*Gyy(x, xi, LD, E, Ix_P)[1], (xi, 0, x)) + sy.integrate(
     (q_D).subs({xd: xi})*Gyy(x, xi, LD, E, Ix_P)[0], (xi, x, LD))
@@ -401,4 +408,54 @@ M_D = Ix_P*E*sy.diff(vD, x, 2)  # Campo de momento flector
 V_D = -Ix_P*E*sy.diff(vD, x, 3)  # Campo de fuerza cortante
 
 
-# %%
+# %%    Revisiones
+Error = sy.zeros(25, 1)
+
+# Cumplimeinto de las ecuaciones diferenciales gobernantes de cada elemento
+
+# Elemento A
+Error[0, 0] = sy.N(sy.expand(Area_pila*E*sy.diff(uA, x, 1)-0), 3)
+Error[1, 0] = sy.N(sy.expand(Ix_pila*E*sy.diff(vA, x, 4)+(k*vA)-0), 3)
+# Elemento B
+Error[2, 0] = sy.N(sy.expand(Area_portico*E*sy.diff(uB, x, 2)+0), 3)
+Error[3, 0] = sy.N(sy.expand(Ix_P*E*sy.diff(vB, x, 4)+0), 3)
+# Elemento C
+#   primer tramo
+Error[2, 0] = sy.N(sy.expand(Area_portico*E*sy.diff(uC_1, x, 2)+0), 3)
+Error[3, 0] = sy.N(sy.expand(Ix_P*E*sy.diff(vC_1, x, 4)+0), 3)
+#   segundo tramo
+Error[4, 0] = sy.N(
+    sy.expand(Area_portico*E*sy.diff(uC_2, x, 2)+p_C.subs({xc: x})), 3)
+Error[5, 0] = sy.N(sy.expand(Ix_P*E*sy.diff(vC_2, x, 4)-q_C.subs({xc: x})), 3)
+# Elemento D
+Error[6, 0] = sy.N(
+    sy.expand(Area_portico*E*sy.diff(uD, x, 2)+p_D.subs({xd: x})), 3)  # revisar
+Error[7, 0] = sy.N(sy.expand(Ix_P*E*sy.diff(vD, x, 4)-q_D.subs({xd: x})), 3)
+
+# Cumplimiento de continuidad de desplazamientos
+# Nudo 1    Apoyo empotrado pila(A)
+Error[8, 0] = sy.N(uA.subs({x: 0}), 3)
+Error[9, 0] = sy.N(vA.subs({x: 0}), 3)
+# Nudo 2    Conexion entre A y B
+Error[10, 0] = sy.N(sy.expand(uA.subs({x: LA})-uB.subs({x: 0})), 3)
+Error[11, 0] = sy.N(sy.expand(vA.subs({x: LA})-vB.subs({x: 0})), 3)
+Error[12, 0] = sy.N(
+    sy.expand(P_A.subs({x: LA})-P_B.subs({x: 0})), 3)  # revisar P_A
+Error[13, 0] = sy.N(sy.expand(V_A.subs({x: LA})-V_B.subs({x: 0})), 3)
+Error[14, 0] = sy.N(sy.expand(-M_A.subs({x: LA})+M_B.subs({x: 0})), 3)
+# Nudo 3    Conexión entre B, C y D
+
+Error[15, 0] = sy.N(sy.expand(uB.subs({x: LB})-uC_2.subs({x: LC})), 3)
+Error[16, 0] = sy.N(sy.expand(uB.subs({x: LB})-uD.subs({x: 0})), 3)
+Error[17, 0] = sy.N(sy.expand(uC_2.subs({x: LC})-uD.subs({x: 0})), 3)
+
+Error[18, 0] = sy.N(sy.expand(vB.subs({x: LB})-vC_2.subs({x: LC})), 3)
+Error[19, 0] = sy.N(sy.expand(vB.subs({x: LB})-vD.subs({x: 0})), 3)
+Error[20, 0] = sy.N(sy.expand(vC_2.subs({x: LC})-vD.subs({x: 0})), 3)
+
+# Nudo 4    Apoyo simple en C
+Error[21, 0] = sy.N(sy.expand(uC_1.subs({x: 0})), 3)
+Error[22, 0] = sy.N(sy.expand(vC_1.subs({x: 0})), 3)
+# Nudo 5    Apoyo empotrado D
+Error[23, 0] = sy.N(sy.expand(uD.subs({x: LD})), 3)
+Error[24, 0] = sy.N(sy.expand(vD.subs({x: LD})), 3)

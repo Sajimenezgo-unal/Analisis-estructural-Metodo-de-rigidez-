@@ -1,0 +1,8 @@
+A continuación se exportan los datos obtenidos mediante el cálculo del método de rigidez
+
+
+Transformación de cargas externas de globales a locales
+Cargas Distribuidas en globales 
+
+Elemento C
+Q_C

@@ -1,3 +1,5 @@
 {
-    "latex-workshop.latex.autoClean.run": "onBuilt"
+    "latex-workshop.latex.autoClean.run": "onBuilt",
+    "latex-workshop.view.pdf.ref.viewer": "external",
+    "latex-workshop.latex.autoBuild.run": "never"
 }

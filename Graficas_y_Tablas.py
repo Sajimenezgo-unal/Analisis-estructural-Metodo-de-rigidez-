@@ -180,7 +180,8 @@ plt.xlabel('$x$[m]', fontsize=16)
 plt.ylabel('$y$[m]', fontsize=16)
 plt.grid(linestyle='--', linewidth=0.3, color='k')
 plt.savefig('LaTex/Graficas/Grafica_Des_vertical.pdf', bbox_inches='tight')
-plt.show()
+# plt.show()
+plt.close()
 # %%             campo de desplazamiento horizontal
 
 # Estructura
@@ -241,8 +242,8 @@ plt.xlabel('$x$[m]', fontsize=16, weight="bold")
 plt.ylabel('$y$[m]', fontsize=16, weight="bold")
 plt.grid(linestyle='--', linewidth=0.3, color='k')
 plt.savefig('LaTex/Graficas/Grafica_Des_horizontal.pdf', bbox_inches='tight')
-plt.show()
-
+# plt.show()
+plt.close()
 
 # %%              Campo de fuerza axial
 
@@ -278,13 +279,13 @@ plt.plot(xB_eval, P_B_gra, color='k', linestyle='--', transform=rot_B + base)
 plt.plot(xD_eval, P_D_gra, color='k', linestyle='--', transform=rot_D + base)
 
 # # values
-plt.text(np.array(xA_eval[0] + 0.3), np.array(P_A_gra[0] + 0.3),
-         f"{sy.nsimplify(P_A_gra[0],tolerance=1e-6)}", transform=rot_A + base)
-plt.text(np.array(xA_eval[99] + 0.3), np.array(P_A_gra[99] + 0.3),
-         f"{sy.nsimplify(P_A_gra[99],tolerance=1e-6)}", transform=rot_A + base)
+plt.text(np.array(xA_eval[0] + 0.5), np.array(P_A_gra[0] - 0.5),
+         f"{sy.N(P_A_gra[0],3)}", transform=rot_A + base)
+# plt.text(np.array(xA_eval[99] + 0.3), np.array(P_A_gra[99] + 0.3),
+#          f"{sy.nsimplify(P_A_gra[99],tolerance=1e-6)}", transform=rot_A + base)
 
-plt.text(np.array(xB_eval[0] - 0.5), np.array(P_B_gra[0] + 0.3),
-         f"{sy.N(P_B_gra[0],3)}", transform=rot_B + base)
+# plt.text(np.array(xB_eval[0] - 0.5), np.array(P_B_gra[0] + 0.3),
+#          f"{sy.N(P_B_gra[0],3)}", transform=rot_B + base)
 plt.text(np.array(xB_eval[99] + 0.3), np.array(P_B_gra[99] +
                                                0.3), f"{sy.N(P_B_gra[99],3)}", transform=rot_B + base)
 
@@ -305,7 +306,8 @@ plt.ylabel('$y$[m]', fontsize=16, weight="bold")
 plt.grid(linestyle='--', linewidth=0.3, color='k')
 plt.savefig('LaTex/Graficas/Grafica_campo_fuerza_axial.pdf',
             bbox_inches='tight')
-plt.show()
+# plt.show()
+plt.close()
 
 # %%              Campo de momento flector
 
@@ -367,7 +369,8 @@ plt.ylabel('$y$[m]', fontsize=16, weight="bold")
 plt.grid(linestyle='--', linewidth=0.3, color='k')
 plt.savefig('LaTex/Graficas/Grafica_campo_momento_flector.pdf',
             bbox_inches='tight')
-plt.show()
+# plt.show()
+plt.close()
 
 # %%              Campo de fuerza cortante
 
@@ -433,7 +436,8 @@ plt.ylabel('$y$[m]', fontsize=16, weight="bold")
 plt.grid(linestyle='--', linewidth=0.3, color='k')
 plt.savefig('LaTex/Graficas/Grafica_campo_fuerza_cortante.pdf',
             bbox_inches='tight')
-plt.show()
+# plt.show()
+plt.close()
 
 
 # %% Tablas
@@ -463,30 +467,30 @@ def Tablas_fuerzas_internas(FI, xi, xj, n, F, Elem):
 
 A, B, C, D = sy.symbols('A,B,C,D')
 #    Elemento A
-PA_Tabla = Tablas_fuerzas_internas(P_A, 0, LA, 10, 'P(x)', A)
-MA_Tabla = Tablas_fuerzas_internas(M_A, 0, LA, 10, 'M(x)', A)
-VA_Tabla = Tablas_fuerzas_internas(V_A, 0, LA, 10, 'V(x)', A)
+PA_Tabla = Tablas_fuerzas_internas(P_A, 0, LA, 10, "P($x'_A$)", A)
+MA_Tabla = Tablas_fuerzas_internas(M_A, 0, LA, 10, "M($x'_A$)", A)
+VA_Tabla = Tablas_fuerzas_internas(V_A, 0, LA, 10, "V($x'_A$)", A)
 #   Elemento B
-PB_Tabla = Tablas_fuerzas_internas(P_B, 0, LB, 10, 'P(x)', B)
-MB_Tabla = Tablas_fuerzas_internas(M_B, 0, LB, 10, 'M(x)', B)
-VB_Tabla = Tablas_fuerzas_internas(V_B, 0, LB, 10, 'V(x)', B)
+PB_Tabla = Tablas_fuerzas_internas(P_B, 0, LB, 10, "P($x'_B$)", B)
+MB_Tabla = Tablas_fuerzas_internas(M_B, 0, LB, 10, "M($x'_B$)", B)
+VB_Tabla = Tablas_fuerzas_internas(V_B, 0, LB, 10, "V($x'_B$)", B)
 #   Elemento D
-PD_Tabla = Tablas_fuerzas_internas(P_D, 0, float(LD), 10, 'P(x)', D)
-MD_Tabla = Tablas_fuerzas_internas(M_D, 0, float(LD), 10, 'M(x)', D)
-VD_Tabla = Tablas_fuerzas_internas(V_D, 0, float(LD), 10, 'V(x)', D)
+PD_Tabla = Tablas_fuerzas_internas(P_D, 0, float(LD), 10, "P($x'_C$)", D)
+MD_Tabla = Tablas_fuerzas_internas(M_D, 0, float(LD), 10, "M($x'_C$)", D)
+VD_Tabla = Tablas_fuerzas_internas(V_D, 0, float(LD), 10, "V($x'_C$)", D)
 #   Elemento C
 PC1_Tabla = Tablas_fuerzas_internas(P_C1, 0, float(
-    LC), 10, 'P(x)', C).drop(index=[5, 6, 7, 8, 9])
+    LC), 10, "P($x'_C$)", C).drop(index=[5, 6, 7, 8, 9])
 MC1_Tabla = Tablas_fuerzas_internas(M_C1, 0, float(
-    LC), 10, 'M(x)', C).drop(index=[5, 6, 7, 8, 9])
+    LC), 10, "M($x'_C$)", C).drop(index=[5, 6, 7, 8, 9])
 VC1_Tabla = Tablas_fuerzas_internas(V_C1, 0, float(
-    LC), 10, 'V(x)', C).drop(index=[5, 6, 7, 8, 9])
+    LC), 10, "V($x'_C$)", C).drop(index=[5, 6, 7, 8, 9])
 PC2_Tabla = Tablas_fuerzas_internas(P_C2, 0, float(
-    LC), 10, 'P(x)', C).drop(index=[0, 1, 2, 3, 4])
+    LC), 10, "P($x'_C$)", C).drop(index=[0, 1, 2, 3, 4])
 MC2_Tabla = Tablas_fuerzas_internas(M_C2, 0, float(
-    LC), 10, 'M(x)', C).drop(index=[0, 1, 2, 3, 4])
+    LC), 10, "M($x'_C$)", C).drop(index=[0, 1, 2, 3, 4])
 VC2_Tabla = Tablas_fuerzas_internas(V_C2, 0, float(
-    LC), 10, 'V(x)', C).drop(index=[0, 1, 2, 3, 4])
+    LC), 10, "V($x'_C$)", C).drop(index=[0, 1, 2, 3, 4])
 
 #       Merge fuerzas internas Elemento C
 

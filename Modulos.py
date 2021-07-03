@@ -192,7 +192,9 @@ def Fforma_pila(ke, Le, Ie, Ee, xe):
             sy.cosh(lambda_e*xe)+(s*ch+c*sh)*sy.cos(lambda_e*xe)*sy.sinh(lambda_e*xe))/(sh**2 - s**2)
     psi6 = (1/lambda_e)*(((c*sh-s*ch)*sy.sin(lambda_e*xe)*sy.sinh(lambda_e*xe)+s*sh*sy.sin(lambda_e*xe)
                           * sy.cosh(lambda_e*xe)-s*sh*sy.cos(lambda_e*xe)*sy.sinh(lambda_e*xe))/(sh**2 - s**2))
-    l = [0, psi2, psi3, 0, psi5, psi6]
+    psi1 = 1 - (xe/Le)
+    psi4 = xe/Le
+    l = [psi1, psi2, psi3, psi4, psi5, psi6]
     return l
 
 

@@ -3,7 +3,7 @@
 """
 Comentarios: usar print al exportar las tablas para 
             evitar el error por saltos de linea (\\\\\)
-            Revisar los de empalme de las funciones de ser necesarios
+            Revisar los valores de empalme de las funciones de ser necesarios
             en caso contrario eliminar el .drop(index[])
             Revisar en que punto (indice) de  los valores de x cambia de 
             funcion para soltar los correctos

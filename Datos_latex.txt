@@ -1,0 +1,388 @@
+A continuación se exportan los datos obtenidos mediante el cálculo del método de rigidez
+
+
+Transformación de cargas externas de globales a locales
+Cargas Distribuidas en globales 
+
+Elemento C
+Q_C
+\frac{10 xc}{3} - 90
+Elemento D
+Q_C
+14 xd - 70
+
+Cargas Distribuidas en locales 
+
+Elemento C
+p_C o carga axial
+xc - 27
+q_C o carga cortante
+3 xc - 81
+Elemento D
+p_D o carga axial
+\frac{700}{29} - \frac{140 xd}{29}
+q_D o carga cortante
+\frac{350 xd}{29} - \frac{1750}{29}
+
+
+Datos elemento A
+Matriz de Rigidez en locales
+\left[\begin{matrix}3.8013 \cdot 10^{6} & 0 & 0 & -3.8013 \cdot 10^{6} & 0 & 0\\0 & 1.5574 \cdot 10^{5} & 3.5747 \cdot 10^{5} & 0 & -1.3188 \cdot 10^{5} & 3.3761 \cdot 10^{5}\\0 & 3.5747 \cdot 10^{5} & 1.1613 \cdot 10^{6} & 0 & -3.3761 \cdot 10^{5} & 5.6646 \cdot 10^{5}\\-3.8013 \cdot 10^{6} & 0 & 0 & 3.8013 \cdot 10^{6} & 0 & 0\\0 & -1.3188 \cdot 10^{5} & -3.3761 \cdot 10^{5} & 0 & 1.5574 \cdot 10^{5} & -3.5747 \cdot 10^{5}\\0 & 3.3761 \cdot 10^{5} & 5.6646 \cdot 10^{5} & 0 & -3.5747 \cdot 10^{5} & 1.1613 \cdot 10^{6}\end{matrix}\right]
+
+Vector de empotramiento
+\left[\begin{matrix}0\\0\\0\\0\\0\\0\end{matrix}\right]
+
+Matriz de transformación
+\left[\begin{matrix}0 & 1.0 & 0 & 0 & 0 & 0\\-1.0 & 0 & 0 & 0 & 0 & 0\\0 & 0 & 1.0 & 0 & 0 & 0\\0 & 0 & 0 & 0 & 1.0 & 0\\0 & 0 & 0 & -1.0 & 0 & 0\\0 & 0 & 0 & 0 & 0 & 1.0\end{matrix}\right]
+
+Matriz de Rigidez en coordenadas Globales
+\left[\begin{matrix}1.5574 \cdot 10^{5} & 0 & -3.5747 \cdot 10^{5} & -1.3188 \cdot 10^{5} & 0 & -3.3761 \cdot 10^{5}\\0 & 3.8013 \cdot 10^{6} & 0 & 0 & -3.8013 \cdot 10^{6} & 0\\-3.5747 \cdot 10^{5} & 0 & 1.1613 \cdot 10^{6} & 3.3761 \cdot 10^{5} & 0 & 5.6646 \cdot 10^{5}\\-1.3188 \cdot 10^{5} & 0 & 3.3761 \cdot 10^{5} & 1.5574 \cdot 10^{5} & 0 & 3.5747 \cdot 10^{5}\\0 & -3.8013 \cdot 10^{6} & 0 & 0 & 3.8013 \cdot 10^{6} & 0\\-3.3761 \cdot 10^{5} & 0 & 5.6646 \cdot 10^{5} & 3.5747 \cdot 10^{5} & 0 & 1.1613 \cdot 10^{6}\end{matrix}\right]
+
+Vector de empotramiento en globales
+\left[\begin{matrix}0\\0\\0\\0\\0\\0\end{matrix}\right]
+
+Datos elemento B
+Matriz de Rigidez en locales
+\left[\begin{matrix}6.0 \cdot 10^{5} & 0 & 0 & -6.0 \cdot 10^{5} & 0 & 0\\0 & 3375.0 & 6750.0 & 0 & -3375.0 & 6750.0\\0 & 6750.0 & 18000.0 & 0 & -6750.0 & 9000.0\\-6.0 \cdot 10^{5} & 0 & 0 & 6.0 \cdot 10^{5} & 0 & 0\\0 & -3375.0 & -6750.0 & 0 & 3375.0 & -6750.0\\0 & 6750.0 & 9000.0 & 0 & -6750.0 & 18000.0\end{matrix}\right]
+
+Vector de empotramiento
+\left[\begin{matrix}0\\0\\0\\0\\0\\0\end{matrix}\right]
+
+Matriz de transformación
+\left[\begin{matrix}0 & 1.0 & 0 & 0 & 0 & 0\\-1.0 & 0 & 0 & 0 & 0 & 0\\0 & 0 & 1.0 & 0 & 0 & 0\\0 & 0 & 0 & 0 & 1.0 & 0\\0 & 0 & 0 & -1.0 & 0 & 0\\0 & 0 & 0 & 0 & 0 & 1.0\end{matrix}\right]
+
+Matriz de Rigidez en coordenadas Globales
+\left[\begin{matrix}3375.0 & 0 & -6750.0 & -3375.0 & 0 & -6750.0\\0 & 6.0 \cdot 10^{5} & 0 & 0 & -6.0 \cdot 10^{5} & 0\\-6750.0 & 0 & 18000.0 & 6750.0 & 0 & 9000.0\\-3375.0 & 0 & 6750.0 & 3375.0 & 0 & 6750.0\\0 & -6.0 \cdot 10^{5} & 0 & 0 & 6.0 \cdot 10^{5} & 0\\-6750.0 & 0 & 9000.0 & 6750.0 & 0 & 18000.0\end{matrix}\right]
+
+Vector de empotramiento en globales
+\left[\begin{matrix}0\\0\\0\\0\\0\\0\end{matrix}\right]
+
+Datos elemento C
+Matriz de Rigidez en locales
+\left[\begin{matrix}3.7947 \cdot 10^{5} & 0 & 0 & -3.7947 \cdot 10^{5} & 0 & 0\\0 & 853.81 & 2700.0 & 0 & -853.81 & 2700.0\\0 & 2700.0 & 11384.0 & 0 & -2700.0 & 5692.1\\-3.7947 \cdot 10^{5} & 0 & 0 & 3.7947 \cdot 10^{5} & 0 & 0\\0 & -853.81 & -2700.0 & 0 & 853.81 & -2700.0\\0 & 2700.0 & 5692.1 & 0 & -2700.0 & 11384.0\end{matrix}\right]
+
+Vector de empotramiento
+\left[\begin{matrix}78.715\\238.14\\244.7\\72.048\\214.14\\-232.05\end{matrix}\right]
+
+Matriz de transformación
+\left[\begin{matrix}0.94868 & 0.31623 & 0 & 0 & 0 & 0\\-0.31623 & 0.94868 & 0 & 0 & 0 & 0\\0 & 0 & 1.0 & 0 & 0 & 0\\0 & 0 & 0 & 0.94868 & 0.31623 & 0\\0 & 0 & 0 & -0.31623 & 0.94868 & 0\\0 & 0 & 0 & 0 & 0 & 1.0\end{matrix}\right]
+
+Matriz de Rigidez en coordenadas Globales
+\left[\begin{matrix}3.4161 \cdot 10^{5} & 1.1359 \cdot 10^{5} & -853.81 & -3.4161 \cdot 10^{5} & -1.1359 \cdot 10^{5} & -853.81\\1.1359 \cdot 10^{5} & 38716.0 & 2561.4 & -1.1359 \cdot 10^{5} & -38716.0 & 2561.4\\-853.81 & 2561.4 & 11384.0 & 853.81 & -2561.4 & 5692.1\\-3.4161 \cdot 10^{5} & -1.1359 \cdot 10^{5} & 853.81 & 3.4161 \cdot 10^{5} & 1.1359 \cdot 10^{5} & 853.81\\-1.1359 \cdot 10^{5} & -38716.0 & -2561.4 & 1.1359 \cdot 10^{5} & 38716.0 & -2561.4\\-853.81 & 2561.4 & 5692.1 & 853.81 & -2561.4 & 11384.0\end{matrix}\right]
+
+Vector de empotramiento en globales
+\left[\begin{matrix}-0.63246\\250.82\\244.7\\0.63246\\225.94\\-232.05\end{matrix}\right]
+
+Datos elemento D
+Matriz de Rigidez en locales
+\left[\begin{matrix}4.4567 \cdot 10^{5} & 0 & 0 & -4.4567 \cdot 10^{5} & 0 & 0\\0 & 1383.1 & 3724.1 & 0 & -1383.1 & 3724.1\\0 & 3724.1 & 13370.0 & 0 & -3724.1 & 6685.0\\-4.4567 \cdot 10^{5} & 0 & 0 & 4.4567 \cdot 10^{5} & 0 & 0\\0 & -1383.1 & -3724.1 & 0 & 1383.1 & -3724.1\\0 & 3724.1 & 6685.0 & 0 & -3724.1 & 13370.0\end{matrix}\right]
+
+Vector de empotramiento
+\left[\begin{matrix}-41.66\\109.98\\83.006\\-18.327\\39.983\\-51.593\end{matrix}\right]
+
+Matriz de transformación
+\left[\begin{matrix}0.92848 & -0.37139 & 0 & 0 & 0 & 0\\0.37139 & 0.92848 & 0 & 0 & 0 & 0\\0 & 0 & 1.0 & 0 & 0 & 0\\0 & 0 & 0 & 0.92848 & -0.37139 & 0\\0 & 0 & 0 & 0.37139 & 0.92848 & 0\\0 & 0 & 0 & 0 & 0 & 1.0\end{matrix}\right]
+
+Matriz de Rigidez en coordenadas Globales
+\left[\begin{matrix}3.8439 \cdot 10^{5} & -1.532 \cdot 10^{5} & 1383.1 & -3.8439 \cdot 10^{5} & 1.532 \cdot 10^{5} & 1383.1\\-1.532 \cdot 10^{5} & 62664.0 & 3457.8 & 1.532 \cdot 10^{5} & -62664.0 & 3457.8\\1383.1 & 3457.8 & 13370.0 & -1383.1 & -3457.8 & 6685.0\\-3.8439 \cdot 10^{5} & 1.532 \cdot 10^{5} & -1383.1 & 3.8439 \cdot 10^{5} & -1.532 \cdot 10^{5} & -1383.1\\1.532 \cdot 10^{5} & -62664.0 & -3457.8 & -1.532 \cdot 10^{5} & 62664.0 & -3457.8\\1383.1 & 3457.8 & 6685.0 & -1383.1 & -3457.8 & 13370.0\end{matrix}\right]
+
+Vector de empotramiento en globales
+\left[\begin{matrix}2.1664\\117.59\\83.006\\-2.1664\\43.93\\-51.593\end{matrix}\right]
+
+Calculo de los desplazamientos deconocidos
+Sistema de ecuaciones
+\left[\begin{matrix}1.5912 \cdot 10^{5} & 0 & 3.5072 \cdot 10^{5} & -3375.0 & 0 & -6750.0 & 0\\0 & 4.4013 \cdot 10^{6} & 0 & 0 & -6.0 \cdot 10^{5} & 0 & 0\\3.5072 \cdot 10^{5} & 0 & 1.1793 \cdot 10^{6} & 6750.0 & 0 & 9000.0 & 0\\-3375.0 & 0 & 6750.0 & 7.2937 \cdot 10^{5} & -39616.0 & 8986.9 & 853.81\\0 & -6.0 \cdot 10^{5} & 0 & -39616.0 & 7.0138 \cdot 10^{5} & 896.33 & -2561.4\\-6750.0 & 0 & 9000.0 & 8986.9 & 896.33 & 42754.0 & 5692.1\\0 & 0 & 0 & 853.81 & -2561.4 & 5692.1 & 11384.0\end{matrix}\right]
+Vector de empotramiento
+\left[\begin{matrix}0\\0\\0\\2.7989\\343.53\\-149.05\\0\end{matrix}\right]
+Solución del sistema de ecuaciones
+
+\left[\begin{matrix}0.000671\\-7.82 \cdot 10^{-5}\\-0.000229\\-7.6 \cdot 10^{-5}\\-0.000574\\0.00395\\-0.0021\end{matrix}\right]
+
+ Calculo de las reacciones
+\begin{tabular}{ll}
+\toprule
+{} &    Reacciones \\
+\midrule
+FX\_1 &     -11.11 kN \\
+FY\_1 &     297.29 kN \\
+M\_1  &   96.750 kN m \\
+FX\_4 &     88.896 kN \\
+FY\_4 &     286.39 kN \\
+FX\_5 &    -66.321 kN \\
+FY\_5 &     54.593 kN \\
+M\_5  &  -27.292 kN m \\
+\bottomrule
+\end{tabular}
+
+
+Campos de desplazamiento
+Campos de desplazamiento Homogeneo A
+
+{u^h}_A
+- \frac{x}{63934}
+
+{v^h}_A
+- \frac{83 \sqrt[4]{\pi} \left(\left(- \sin{\left(\frac{100915}{74996 \sqrt[4]{\pi}} \right)} \cosh{\left(\frac{100915}{74996 \sqrt[4]{\pi}} \right)} + \cos{\left(\frac{100915}{74996 \sqrt[4]{\pi}} \right)} \sinh{\left(\frac{100915}{74996 \sqrt[4]{\pi}} \right)}\right) \sin{\left(\frac{20183 x}{74996 \sqrt[4]{\pi}} \right)} \sinh{\left(\frac{20183 x}{74996 \sqrt[4]{\pi}} \right)} + \sin{\left(\frac{100915}{74996 \sqrt[4]{\pi}} \right)} \sin{\left(\frac{20183 x}{74996 \sqrt[4]{\pi}} \right)} \sinh{\left(\frac{100915}{74996 \sqrt[4]{\pi}} \right)} \cosh{\left(\frac{20183 x}{74996 \sqrt[4]{\pi}} \right)} - \sin{\left(\frac{100915}{74996 \sqrt[4]{\pi}} \right)} \cos{\left(\frac{20183 x}{74996 \sqrt[4]{\pi}} \right)} \sinh{\left(\frac{100915}{74996 \sqrt[4]{\pi}} \right)} \sinh{\left(\frac{20183 x}{74996 \sqrt[4]{\pi}} \right)}\right)}{97380 \left(- \sin^{2}{\left(\frac{100915}{74996 \sqrt[4]{\pi}} \right)} + \sinh^{2}{\left(\frac{100915}{74996 \sqrt[4]{\pi}} \right)}\right)} - \frac{25 \left(2 \sin{\left(\frac{100915}{74996 \sqrt[4]{\pi}} \right)} \sin{\left(\frac{20183 x}{74996 \sqrt[4]{\pi}} \right)} \sinh{\left(\frac{100915}{74996 \sqrt[4]{\pi}} \right)} \sinh{\left(\frac{20183 x}{74996 \sqrt[4]{\pi}} \right)} - \left(\cos{\left(\frac{100915}{74996 \sqrt[4]{\pi}} \right)} \sinh{\left(\frac{100915}{74996 \sqrt[4]{\pi}} \right)} + \sin{\left(\frac{100915}{74996 \sqrt[4]{\pi}} \right)} \cosh{\left(\frac{100915}{74996 \sqrt[4]{\pi}} \right)}\right) \sin{\left(\frac{20183 x}{74996 \sqrt[4]{\pi}} \right)} \cosh{\left(\frac{20183 x}{74996 \sqrt[4]{\pi}} \right)} + \left(\cos{\left(\frac{100915}{74996 \sqrt[4]{\pi}} \right)} \sinh{\left(\frac{100915}{74996 \sqrt[4]{\pi}} \right)} + \sin{\left(\frac{100915}{74996 \sqrt[4]{\pi}} \right)} \cosh{\left(\frac{100915}{74996 \sqrt[4]{\pi}} \right)}\right) \cos{\left(\frac{20183 x}{74996 \sqrt[4]{\pi}} \right)} \sinh{\left(\frac{20183 x}{74996 \sqrt[4]{\pi}} \right)}\right)}{37234 \left(- \sin^{2}{\left(\frac{100915}{74996 \sqrt[4]{\pi}} \right)} + \sinh^{2}{\left(\frac{100915}{74996 \sqrt[4]{\pi}} \right)}\right)}
+
+Campos de desplazamientos totales (suma homogeneo más empotrado)
+u_A
+- \frac{x}{63934}
+
+v_A
+- \frac{83 \sqrt[4]{\pi} \left(\left(- \sin{\left(\frac{100915}{74996 \sqrt[4]{\pi}} \right)} \cosh{\left(\frac{100915}{74996 \sqrt[4]{\pi}} \right)} + \cos{\left(\frac{100915}{74996 \sqrt[4]{\pi}} \right)} \sinh{\left(\frac{100915}{74996 \sqrt[4]{\pi}} \right)}\right) \sin{\left(\frac{20183 x}{74996 \sqrt[4]{\pi}} \right)} \sinh{\left(\frac{20183 x}{74996 \sqrt[4]{\pi}} \right)} + \sin{\left(\frac{100915}{74996 \sqrt[4]{\pi}} \right)} \sin{\left(\frac{20183 x}{74996 \sqrt[4]{\pi}} \right)} \sinh{\left(\frac{100915}{74996 \sqrt[4]{\pi}} \right)} \cosh{\left(\frac{20183 x}{74996 \sqrt[4]{\pi}} \right)} - \sin{\left(\frac{100915}{74996 \sqrt[4]{\pi}} \right)} \cos{\left(\frac{20183 x}{74996 \sqrt[4]{\pi}} \right)} \sinh{\left(\frac{100915}{74996 \sqrt[4]{\pi}} \right)} \sinh{\left(\frac{20183 x}{74996 \sqrt[4]{\pi}} \right)}\right)}{97380 \left(- \sin^{2}{\left(\frac{100915}{74996 \sqrt[4]{\pi}} \right)} + \sinh^{2}{\left(\frac{100915}{74996 \sqrt[4]{\pi}} \right)}\right)} - \frac{25 \left(2 \sin{\left(\frac{100915}{74996 \sqrt[4]{\pi}} \right)} \sin{\left(\frac{20183 x}{74996 \sqrt[4]{\pi}} \right)} \sinh{\left(\frac{100915}{74996 \sqrt[4]{\pi}} \right)} \sinh{\left(\frac{20183 x}{74996 \sqrt[4]{\pi}} \right)} - \left(\cos{\left(\frac{100915}{74996 \sqrt[4]{\pi}} \right)} \sinh{\left(\frac{100915}{74996 \sqrt[4]{\pi}} \right)} + \sin{\left(\frac{100915}{74996 \sqrt[4]{\pi}} \right)} \cosh{\left(\frac{100915}{74996 \sqrt[4]{\pi}} \right)}\right) \sin{\left(\frac{20183 x}{74996 \sqrt[4]{\pi}} \right)} \cosh{\left(\frac{20183 x}{74996 \sqrt[4]{\pi}} \right)} + \left(\cos{\left(\frac{100915}{74996 \sqrt[4]{\pi}} \right)} \sinh{\left(\frac{100915}{74996 \sqrt[4]{\pi}} \right)} + \sin{\left(\frac{100915}{74996 \sqrt[4]{\pi}} \right)} \cosh{\left(\frac{100915}{74996 \sqrt[4]{\pi}} \right)}\right) \cos{\left(\frac{20183 x}{74996 \sqrt[4]{\pi}} \right)} \sinh{\left(\frac{20183 x}{74996 \sqrt[4]{\pi}} \right)}\right)}{37234 \left(- \sin^{2}{\left(\frac{100915}{74996 \sqrt[4]{\pi}} \right)} + \sinh^{2}{\left(\frac{100915}{74996 \sqrt[4]{\pi}} \right)}\right)}Campos de desplazamiento Homogeneo B
+
+{u^h}_B
+- \frac{x}{8073} - \frac{7}{89507}
+
+{v^h}_B
+\frac{13 x^{3}}{62191} - \frac{41 x^{2}}{56005} - \frac{7 x}{30517} - \frac{25}{37234}
+
+Campos de desplazamientos totales (suma homogeneo más empotrado)
+u_B
+- \frac{x}{8073} - \frac{7}{89507}
+
+v_B
+\frac{13 x^{3}}{62191} - \frac{41 x^{2}}{56005} - \frac{7 x}{30517} - \frac{25}{37234}Campos de desplazamiento Homogeneo C
+
+{u^h}_C
+- \frac{x}{24952}
+
+{v^h}_C
+\frac{36022130375 x^{3}}{715104008001984} - \frac{3449 \sqrt{10} x^{2}}{357552004000992} - \frac{299 x}{142572}
+
+ El elemento c posee dos campos de desplazamiento emportrados, ya que la carga externa no se encuentra distribuida en todo el elemento
+
+Primer tramo
+{{u^f}_C}^I
+0
+
+{{v^f}_C}^I
+\frac{7 x^{3}}{19200} + \frac{68567 \sqrt{10} x^{3}}{487616000} - \frac{17 \sqrt{10} x^{2}}{14400} - \frac{3 x^{2}}{1280}
+
+Campos de desplazamientos totales (suma homogeneo más empotrado)
+{u_C}^I
+- \frac{3 x}{77543}
+
+{v_C}^I
+\frac{9891237776413 x^{3}}{23836800266732800} + \frac{68567 \sqrt{10} x^{3}}{487616000} - \frac{63316501225859 \sqrt{10} x^{2}}{53632800600148800} - \frac{3 x^{2}}{1280} - \frac{299 x}{142572}
+
+Segundo tramo
+{{u^f}_C}^II
+\frac{11111 x^{2}}{8888900000} - \frac{\sqrt{10} x}{71111} + \frac{5}{88889}
+
+{{v^f}_C}^II
+- \frac{11 x^{5}}{3600000} - \frac{3 x^{4}}{16000} + \frac{13 x^{3}}{57600} + \frac{434279 \sqrt{10} x^{3}}{487616000} - \frac{87 x^{2}}{6400} - \frac{13 \sqrt{10} x^{2}}{14400} - \frac{x}{480} + \frac{3 \sqrt{10} x}{400} - \frac{3}{160} + \frac{\sqrt{10}}{1000}
+
+Campos de desplazamientos totales (suma homogeneo más empotrado)
+{u_C}^II
+\frac{11111 x^{2}}{8888900000} - \frac{\sqrt{10} x}{71111} - \frac{x}{26810} + \frac{5}{88889}
+
+{v_C}^II
+- \frac{11 x^{5}}{3600000} - \frac{3 x^{4}}{16000} + \frac{59225139654301 x^{3}}{214531202400595200} + \frac{434279 \sqrt{10} x^{3}}{487616000} - \frac{87 x^{2}}{6400} - \frac{48418501059151 \sqrt{10} x^{2}}{53632800600148800} - \frac{7947 x}{1900960} + \frac{3 \sqrt{10} x}{400} - \frac{3}{160} + \frac{\sqrt{10}}{1000}
+
+Campos de desplazamiento Homogeneo D
+
+{u^h}_D
+- \frac{x}{37780} + \frac{\sqrt{29}}{37780}
+
+{v^h}_D
+\frac{1983839 x^{3}}{15385555832} - \frac{4022933 \sqrt{29} x^{2}}{15385555832} + \frac{349 x}{88408} - \frac{5 \sqrt{29}}{48008}
+
+Campos de desplazamiento Empotrado D
+
+{u^f}_D
+- \frac{571 x^{2}}{9942900000} - \frac{x}{100000} + \frac{\sqrt{29} x}{100000}
+
+{v^f}_D
+\frac{62639 x^{5}}{11210806080} - \frac{7 x^{4}}{50112} + \frac{7 x^{3}}{8640} + \frac{60553 \sqrt{29} x^{3}}{216742752} - \frac{7 \sqrt{29} x^{2}}{4320} - \frac{20185 x^{2}}{4982592}
+
+Campos de desplazamientos totales (suma homogeneo más empotrado)
+u_D
+- \frac{571 x^{2}}{9942900000} - \frac{6889 x}{188900000} + \frac{\sqrt{29} x}{100000} + \frac{\sqrt{29}}{37780}
+
+v_D
+\frac{62639 x^{5}}{11210806080} - \frac{7 x^{4}}{50112} + \frac{15604907473 x^{3}}{16616400298560} + \frac{60553 \sqrt{29} x^{3}}{216742752} - \frac{15634745173 \sqrt{29} x^{2}}{8308200149280} - \frac{20185 x^{2}}{4982592} + \frac{349 x}{88408} - \frac{5 \sqrt{29}}{48008}
+
+
+Fuerzas Internas
+
+
+Elemento A
+Fuerza axial
+ P_A
+- \frac{\sqrt{88549}}{2} - \frac{297}{2}
+Momento flector
+ M_A
+27.474 \sin{\left(\frac{20183 x}{74996 \sqrt[4]{\pi}} \right)} \cosh{\left(\frac{20183 x}{74996 \sqrt[4]{\pi}} \right)} + 27.474 \cos{\left(\frac{20183 x}{74996 \sqrt[4]{\pi}} \right)} \sinh{\left(\frac{20183 x}{74996 \sqrt[4]{\pi}} \right)} - 96.749 \cos{\left(\frac{20183 x}{74996 \sqrt[4]{\pi}} \right)} \cosh{\left(\frac{20183 x}{74996 \sqrt[4]{\pi}} \right)}
+Fuerza cortante
+ V_A
+- 19.557 \sin{\left(\frac{20183 x}{74996 \sqrt[4]{\pi}} \right)} \cosh{\left(\frac{20183 x}{74996 \sqrt[4]{\pi}} \right)} + 19.557 \cos{\left(\frac{20183 x}{74996 \sqrt[4]{\pi}} \right)} \sinh{\left(\frac{20183 x}{74996 \sqrt[4]{\pi}} \right)} - 11.108 \cos{\left(\frac{20183 x}{74996 \sqrt[4]{\pi}} \right)} \cosh{\left(\frac{20183 x}{74996 \sqrt[4]{\pi}} \right)}
+
+Elemento B
+Fuerza axial
+ P_B
+- \frac{\sqrt{88549}}{2} - \frac{297}{2}
+Momento flector
+ M_B
+\frac{1614653 x}{71522} - \frac{2073779}{78687}
+Fuerza cortante
+ V_B
+- \frac{\sqrt{113362}}{29} - \frac{318}{29}
+
+Elemento C
+
+Primer tramo
+Fuerza axial
+ {P_C}^I
+- \frac{117}{2} - \frac{\sqrt{12409}}{2}
+Momento flector
+ {M_C}^I
+\frac{4136942369973563 x}{92310910734504} + \frac{243 \sqrt{10} x}{16} - \frac{980803424748557 \sqrt{10}}{23077727683626} - \frac{675}{8}
+Fuerza cortante
+ {V_C}^I
+- \frac{164}{7} - \frac{\sqrt{25727}}{7}
+
+Segundo tramo
+
+Fuerza axial
+ {P_C}^II
+\frac{\sqrt{10} x^{3}}{20} + \frac{27 \sqrt{10} x^{2}}{40} + 6 x - \frac{135 \sqrt{10}}{4} - \frac{7506674}{85447}
+Momento flector
+ {M_C}^II
+- \frac{11 x^{3}}{10} - \frac{81 x^{2}}{2} + \frac{2752278708956003 x}{92310910734504} + \frac{1539 \sqrt{10} x}{16} - \frac{3915}{8} - \frac{750026147912297 \sqrt{10}}{23077727683626}
+Fuerza cortante
+ {V_C}^II
+\frac{33 x^{2}}{10} + 81 x - \frac{1539 \sqrt{10}}{16} + \frac{1639137}{98242}
+
+Elemento D
+Fuerza axial
+ P_D
+- \frac{140 \sqrt{29} x^{3}}{841} - \frac{350 \sqrt{29} x^{2}}{841} - \frac{8 x}{29} - \frac{8470616}{97521} + \frac{350 \sqrt{29}}{29}
+Momento flector
+ M_D
+\frac{7830125 x^{3}}{3892641} - \frac{875 x^{2}}{29} + \frac{350812925911 x}{3458816962} + \frac{875 \sqrt{29} x}{29} - \frac{351483705365 \sqrt{29}}{5188225443} - \frac{875}{6}
+Fuerza cortante
+ V_D
+- \frac{7830125 x^{2}}{1297547} + \frac{1750 x}{29} - \frac{875 \sqrt{29}}{29} + \frac{3066927}{79507}
+
+Tablas de resumen
+
+Elemento A
+\begin{tabular}{rrrr}
+\toprule
+   \$x\_A\$ &  \$P(\$x'\_A\$)\$ &  \$V(\$x'\_A\$)\$ &  \$M(\$x'\_A\$)\$ \\
+\midrule
+ 0.00000 &   -297.28727 &    -11.10766 &    -96.74946 \\
+ 0.55556 &   -297.28727 &    -11.12583 &    -90.57601 \\
+ 1.11111 &   -297.28727 &    -11.25068 &    -84.36763 \\
+ 1.66667 &   -297.28727 &    -11.58237 &    -78.03691 \\
+ 2.22222 &   -297.28727 &    -12.21390 &    -71.44276 \\
+ 2.77778 &   -297.28727 &    -13.23087 &    -64.39448 \\
+ 3.33333 &   -297.28727 &    -14.71104 &    -56.65596 \\
+ 3.88889 &   -297.28727 &    -16.72374 &    -47.95020 \\
+ 4.44444 &   -297.28727 &    -19.32887 &    -37.96425 \\
+ 5.00000 &   -297.28727 &    -22.57561 &    -26.35479 \\
+\bottomrule
+\end{tabular}
+
+Elemento B
+\begin{tabular}{rrrr}
+\toprule
+   \$x\_B\$ &  \$P(\$x'\_B\$)\$ &  \$V(\$x'\_B\$)\$ &  \$M(\$x'\_B\$)\$ \\
+\midrule
+ 0.00000 &   -297.28727 &    -22.57561 &    -26.35479 \\
+ 0.44444 &   -297.28727 &    -22.57561 &    -16.32118 \\
+ 0.88889 &   -297.28727 &    -22.57561 &     -6.28757 \\
+ 1.33333 &   -297.28727 &    -22.57561 &      3.74603 \\
+ 1.77778 &   -297.28727 &    -22.57561 &     13.77964 \\
+ 2.22222 &   -297.28727 &    -22.57561 &     23.81324 \\
+ 2.66667 &   -297.28727 &    -22.57561 &     33.84685 \\
+ 3.11111 &   -297.28727 &    -22.57561 &     43.88046 \\
+ 3.55556 &   -297.28727 &    -22.57561 &     53.91406 \\
+ 4.00000 &   -297.28727 &    -22.57561 &     63.94767 \\
+\bottomrule
+\end{tabular}
+
+Elemento C
+\begin{tabular}{rrrr}
+\toprule
+   \$x\_C\$ &  \$P(\$x'\_C\$)\$ &  \$V(\$x'\_C\$)\$ &  \$M(\$x'\_C\$)\$ \\
+\midrule
+ 0.00000 &   -114.19719 &    -46.34241 &    -71.72589 \\
+ 0.70273 &   -114.19719 &    -46.34241 &    -39.15977 \\
+ 1.40546 &   -114.19719 &    -46.34241 &     -6.59364 \\
+ 2.10819 &   -114.19719 &    -46.34241 &     25.97248 \\
+ 2.81091 &   -114.19719 &    -46.34241 &     58.53860 \\
+ 3.51364 &   -105.88320 &    -21.40042 &     86.71202 \\
+ 4.21637 &    -89.62558 &     27.37242 &     84.52692 \\
+ 4.91910 &    -73.86179 &     74.66379 &     48.58829 \\
+ 5.62183 &    -58.59183 &    120.47368 &    -20.06279 \\
+ 6.32456 &    -43.81569 &    164.80209 &   -120.38523 \\
+\bottomrule
+\end{tabular}
+
+Elemento D
+\begin{tabular}{rrrr}
+\toprule
+   \$x\_D\$ &  \$P(\$x'\_C\$)\$ &  \$V(\$x'\_C\$)\$ &  \$M(\$x'\_C\$)\$ \\
+\midrule
+ 0.00000 &    -21.86604 &   -123.90912 &   -133.69744 \\
+ 0.59835 &    -35.44481 &    -89.96219 &    -69.92777 \\
+ 1.19670 &    -47.29519 &    -60.33624 &    -25.17757 \\
+ 1.79505 &    -57.41717 &    -35.03128 &      3.13863 \\
+ 2.39341 &    -65.81076 &    -14.04731 &     17.60630 \\
+ 2.99176 &    -72.47595 &      2.61567 &     20.81092 \\
+ 3.59011 &    -77.41275 &     14.95766 &     15.33795 \\
+ 4.18846 &    -80.62115 &     22.97867 &      3.77286 \\
+ 4.78681 &    -82.10116 &     26.67869 &    -11.29888 \\
+ 5.38516 &    -81.85277 &     26.05772 &    -27.29180 \\
+\bottomrule
+\end{tabular}
+
+Fuerza que el suelo ejerce sobre la viga
+7.9068 \sin{\left(\frac{20183 x}{74996 \sqrt[4]{\pi}} \right)} \sinh{\left(\frac{20183 x}{74996 \sqrt[4]{\pi}} \right)} - 2.2454 \sin{\left(\frac{20183 x}{74996 \sqrt[4]{\pi}} \right)} \cosh{\left(\frac{20183 x}{74996 \sqrt[4]{\pi}} \right)} + 2.2454 \cos{\left(\frac{20183 x}{74996 \sqrt[4]{\pi}} \right)} \sinh{\left(\frac{20183 x}{74996 \sqrt[4]{\pi}} \right)}
+
+
+Elemento A
+
+Matriz en coordenadas locales
+\left[\begin{matrix}3.8013 \cdot 10^{6} & 0 & 0 & -3.8013 \cdot 10^{6} & 0 & 0\\0 & 1.5574 \cdot 10^{5} & 3.5747 \cdot 10^{5} & 0 & -1.3188 \cdot 10^{5} & 3.3761 \cdot 10^{5}\\0 & 3.5747 \cdot 10^{5} & 1.1613 \cdot 10^{6} & 0 & -3.3761 \cdot 10^{5} & 5.6646 \cdot 10^{5}\\-3.8013 \cdot 10^{6} & 0 & 0 & 3.8013 \cdot 10^{6} & 0 & 0\\0 & -1.3188 \cdot 10^{5} & -3.3761 \cdot 10^{5} & 0 & 1.5574 \cdot 10^{5} & -3.5747 \cdot 10^{5}\\0 & 3.3761 \cdot 10^{5} & 5.6646 \cdot 10^{5} & 0 & -3.5747 \cdot 10^{5} & 1.1613 \cdot 10^{6}\end{matrix}\right]
+Vector de desplazamientos
+\left[\begin{matrix}0\\0\\0\\-7.8206 \cdot 10^{-5}\\-0.00067143\\-0.00022938\end{matrix}\right]
+Vector de empotramiento
+\left[\begin{matrix}0\\0\\0\\0\\0\\0\end{matrix}\right]
+Resultados
+\left[\begin{matrix}297.287\\11.1077\\96.7495\\-297.287\\-22.5756\\-26.3548\end{matrix}\right]
+
+Elemento B
+
+Matriz en coordenadas locales
+\left[\begin{matrix}6.0 \cdot 10^{5} & 0 & 0 & -6.0 \cdot 10^{5} & 0 & 0\\0 & 3375.0 & 6750.0 & 0 & -3375.0 & 6750.0\\0 & 6750.0 & 18000.0 & 0 & -6750.0 & 9000.0\\-6.0 \cdot 10^{5} & 0 & 0 & 6.0 \cdot 10^{5} & 0 & 0\\0 & -3375.0 & -6750.0 & 0 & 3375.0 & -6750.0\\0 & 6750.0 & 9000.0 & 0 & -6750.0 & 18000.0\end{matrix}\right]
+Vector de desplazamientos
+\left[\begin{matrix}-7.8206 \cdot 10^{-5}\\-0.00067143\\-0.00022938\\-0.00057369\\7.5953 \cdot 10^{-5}\\0.0039476\end{matrix}\right]
+Vector de empotramiento
+\left[\begin{matrix}0\\0\\0\\0\\0\\0\end{matrix}\right]
+Resultados
+\left[\begin{matrix}297.287\\22.5756\\26.3548\\-297.287\\-22.5756\\63.9477\end{matrix}\right]
+
+Elemento C
+
+Matriz en coordenadas locales
+\left[\begin{matrix}3.7947 \cdot 10^{5} & 0 & 0 & -3.7947 \cdot 10^{5} & 0 & 0\\0 & 853.81 & 2700.0 & 0 & -853.81 & 2700.0\\0 & 2700.0 & 11384.0 & 0 & -2700.0 & 5692.1\\-3.7947 \cdot 10^{5} & 0 & 0 & 3.7947 \cdot 10^{5} & 0 & 0\\0 & -853.81 & -2700.0 & 0 & 853.81 & -2700.0\\0 & 2700.0 & 5692.1 & 0 & -2700.0 & 11384.0\end{matrix}\right]
+Vector de desplazamientos
+\left[\begin{matrix}0\\0\\-0.0020972\\-0.00025347\\-0.00052023\\0.0039476\end{matrix}\right]
+Vector de empotramiento
+\left[\begin{matrix}78.715\\238.14\\244.7\\72.048\\214.14\\-232.05\end{matrix}\right]
+Resultados
+\left[\begin{matrix}174.9\\243.585\\244.702\\-24.137\\208.704\\-197.645\end{matrix}\right]
+
+Elemento D
+
+Matriz en coordenadas locales
+\left[\begin{matrix}4.4567 \cdot 10^{5} & 0 & 0 & -4.4567 \cdot 10^{5} & 0 & 0\\0 & 1383.1 & 3724.1 & 0 & -1383.1 & 3724.1\\0 & 3724.1 & 13370.0 & 0 & -3724.1 & 6685.0\\-4.4567 \cdot 10^{5} & 0 & 0 & 4.4567 \cdot 10^{5} & 0 & 0\\0 & -1383.1 & -3724.1 & 0 & 1383.1 & -3724.1\\0 & 3724.1 & 6685.0 & 0 & -3724.1 & 13370.0\end{matrix}\right]
+Vector de desplazamientos
+\left[\begin{matrix}0.00014254\\-0.00056086\\0.0039476\\0\\0\\0\end{matrix}\right]
+Vector de empotramiento
+\left[\begin{matrix}-41.66\\109.98\\83.006\\-18.327\\39.983\\-51.593\end{matrix}\right]
+Resultados
+\left[\begin{matrix}21.866\\123.909\\133.697\\-81.8528\\26.0577\\-27.2918\end{matrix}\right]
