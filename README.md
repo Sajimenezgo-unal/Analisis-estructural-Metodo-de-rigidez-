@@ -14,3 +14,4 @@ A partir de estos 4 scripts se desarrolla todo el cálculo de la estructura por 
 
 Se presenta el documento realizado con base en los datos obtenidos en los cálculos anexados en este repositorio.(Carpeta LaTex/PDF)
 
+![alt text](https://raw.githubusercontent.com/Sajimenezgo-unal/Trabajo-Estructural/main/Enunciado_Grafica.png)
