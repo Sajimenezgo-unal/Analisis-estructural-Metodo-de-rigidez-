@@ -153,6 +153,20 @@ def Vector_emp_portico(x, L, p, q):
     return vec
 
 
+def Vector_emp_portico_tramos(x, L, p, q, xi, xj):
+
+    vec = sy.zeros(6, 1, dtype=float)
+
+    vec[0, 0] = -sy.integrate(Fforma(x, L)[0]*p, (x, xi, xj))
+    vec[1, 0] = -sy.integrate(Fforma(x, L)[1]*q, (x, xi, xj))
+    vec[2, 0] = -sy.integrate(Fforma(x, L)[2]*q, (x, xi, xj))
+    vec[3, 0] = -sy.integrate(Fforma(x, L)[3]*p, (x, xi, xj))
+    vec[4, 0] = -sy.integrate(Fforma(x, L)[4]*q, (x, xi, xj))
+    vec[5, 0] = -sy.integrate(Fforma(x, L)[5]*q, (x, xi, xj))
+
+    return vec
+
+
 def Mtrans(theta_e, phi_i, phi_j):
     TE = sy.zeros(6, 6)
 
@@ -299,13 +313,17 @@ def Cargas2Locales(dirR, Q, theta):
     if dirR == 'v' or 'V':
         p = Q*sy.Abs(sy.cos(theta))*sy.sin(theta)
         q = Q*sy.Abs(sy.cos(theta))*sy.cos(theta)
+        l = [p, q]
+        return l
 
-    else:
+    if dirR == 'h' or 'H':
         p = Q*sy.Abs(sy.sin(theta))*sy.cos(theta)
         q = -1*Q*sy.Abs(sy.sin(theta))*sy.sin(theta)
-
-    l = [p, q]
-    return l
+        l = [p, q]
+        return l
+    else:
+        print('Ingrese una dirección valida "v", "h"')
+        return False
 
 
 def cdeshomogeneo_pilas(ui, uj, vi, vj, Theta_i, Theta_j, x, L, ke, Ie, Ee):
