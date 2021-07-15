@@ -160,7 +160,7 @@ for i in range(3):
 # %% Solución del Sistema matricial
 
 """
-Conversión a un array de pandas para utilizar la función linalg.solve()
+Conversión a un array de numpy para utilizar la función linalg.solve()
 """
 
 sis_Eq = np.array(Desnod).astype(np.float64)

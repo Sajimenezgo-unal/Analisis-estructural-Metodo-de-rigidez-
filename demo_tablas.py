@@ -32,6 +32,7 @@ def tablas(FI, x0, x1, n, F, Elem):
     donde los objetos pueden ser valores o listas o diccionario 
     """
     Datos = {f'$x_{Elem}$': [], f'${F}$': []}
+
     for xn in xvalores:
 
         valor = np.round(float(FI.subs({x: xn})), decimals=5)
@@ -63,6 +64,12 @@ tabla_Vc2 = tablas(V_C2, 0, float(LC), 50, 'V(x_c)[kN]', 'C').drop(
 # Se utiliza el método drop para soltar o eliminar las parte de las tablas con
 # funciones que fueron evaluadas pero que no corresponden a las funciones correctas a evaluar
 
+# Elemento A
+
+tabla_PA = tablas(PA, 0, LA, 10, '$P_A$', 'A')
+tabla_MA = tablas(MA, 0, LA, 10, '$M_A$', 'A')
+tabla_VA = tablas(VA, 0, LA, 10, '$V_A$', 'A')
+
 # Se concatenan las dos porciones de la tabla con el fin de tener una tabla con 10 valores de x evaluados
 tabla_PC = pd.concat([tabla_Pc1, tabla_Pc2])
 tabla_MC = pd.concat([tabla_Mc1, tabla_Mc2])
@@ -72,6 +79,8 @@ tabla_VC = pd.concat([tabla_Vc1, tabla_Vc2])
 tabla_C = pd.merge(tabla_PC, pd.merge(
     tabla_MC, tabla_VC, on='$x_C$'), on='$x_C$')
 
+tabla_A = pd.merge(tabla_PA, pd.merge(
+    tabla_MA, tabla_VA, on='$x_A$'), on='$x_A$')
 # exportar a latex
 # nombretabla.to_latex(index=False)
 print(tabla_C.to_latex(index=False))
