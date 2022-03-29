@@ -14,7 +14,7 @@ A partir de estos 4 scripts se desarrolla todo el cálculo de la estructura por 
 
 Se presenta el documento realizado con base en los datos obtenidos en los cálculos anexados en este repositorio. [PDF](LaTex/Informe/Trabajo_Estructural_2021__Solo_resultados_.pdf)
 
-### Nota: Se debe presentar un diagrama en el cual se muestre la figura deformada completa, por lo que se deberia crear una grafica donde los datos de entrada para el eje x sean los valores de las listas creados para el desplazamiento horizontal, de igual manera para los datos del desplazamiento vertical.
+### Nota: Se debe presentar un diagrama en el cual se muestre la figura deformada completa, por lo que se deberá crear una grafica donde los datos de entrada para el eje x sean los valores de las listas creados para el desplazamiento horizontal, de igual manera para los datos del desplazamiento vertical en el eje y de la figura.
 
 siendo el ejercicio a realizar el siguiente:
 
